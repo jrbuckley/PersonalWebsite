@@ -1,0 +1,18 @@
+---
+interface Props {
+  code: string;
+  language?: string;
+}
+
+const { code, language = 'jsx' } = Astro.props;
+---
+
+<pre class="bg-gray-800 p-4 rounded-lg overflow-x-auto">
+  <code class={`language-${language}`} set:html={code} />
+</pre>
+
+<style>
+  pre {
+    margin: 1.5rem 0;
+  }
+</style> 

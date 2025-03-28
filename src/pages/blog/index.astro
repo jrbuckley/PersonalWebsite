@@ -1,0 +1,135 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import { getCollection } from 'astro:content';
+
+// Get all blog posts
+const blogPosts = await getCollection('blog');
+
+// Get unique tags from all posts
+const uniqueTags = [...new Set(blogPosts.flatMap(post => post.data.tags))];
+
+// Get current tag and search query from URL
+const url = new URL(Astro.request.url);
+const currentTag = url.searchParams.get('tag') || '';
+const searchQuery = url.searchParams.get('q')?.toLowerCase() || '';
+
+// Helper function to build URL with parameters
+const buildUrl = (params: Record<string, string>) => {
+  const searchParams = new URLSearchParams();
+  Object.entries(params).forEach(([key, value]) => {
+    if (value && value.trim() !== '') searchParams.append(key, value);
+  });
+  return `/blog${searchParams.toString() ? `?${searchParams.toString()}` : ''}`;
+};
+
+// Filter posts based on tag and search query
+const filteredPosts = blogPosts.filter(post => {
+  const matchesTag = !currentTag || post.data.tags.includes(currentTag);
+  const matchesSearch = !searchQuery || 
+    post.data.title.toLowerCase().includes(searchQuery) || 
+    post.data.description.toLowerCase().includes(searchQuery);
+  return matchesTag && matchesSearch;
+});
+---
+
+<Layout title="Blog - Jorge Buckley">
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <header class="mb-8">
+      <h1 class="text-4xl font-bold text-[color:var(--color-luxe-text)] mb-4">Blog</h1>
+      <p class="text-xl text-[color:var(--color-luxe-subtext)]">
+        Thoughts, tutorials, and insights about software development.
+      </p>
+    </header>
+
+    <div class="mb-8">
+      <form action="/blog" method="GET" class="flex gap-4" id="searchForm">
+        <input
+          type="text"
+          name="q"
+          value={searchQuery}
+          placeholder="Search posts..."
+          class="flex-1 px-4 py-2 rounded-lg bg-[color:var(--color-luxe-card)] text-[color:var(--color-luxe-text)] border border-[color:var(--color-luxe-accent)] focus:outline-none focus:ring-2 focus:ring-[color:var(--color-luxe-accent)]"
+        />
+        <button
+          type="submit"
+          class="px-6 py-2 bg-[color:var(--color-luxe-accent)] text-white rounded-lg hover:bg-[color:var(--color-luxe-accent-hover)] transition-colors"
+        >
+          Search
+        </button>
+      </form>
+    </div>
+
+    <div class="mb-8">
+      <div class="flex flex-wrap gap-2">
+        <a
+          href={buildUrl({ q: searchQuery })}
+          class={`px-4 py-2 rounded-full text-sm transition-colors ${
+            !currentTag
+              ? 'bg-[color:var(--color-luxe-accent)] text-white'
+              : 'bg-[color:var(--color-luxe-card)] text-[color:var(--color-luxe-text)] hover:bg-[color:var(--color-luxe-accent)] hover:text-white'
+          }`}
+        >
+          All Posts
+        </a>
+        {uniqueTags.map(tag => (
+          <a
+            href={buildUrl({ tag, q: searchQuery })}
+            class={`px-4 py-2 rounded-full text-sm transition-colors ${
+              currentTag === tag
+                ? 'bg-[color:var(--color-luxe-accent)] text-white'
+                : 'bg-[color:var(--color-luxe-card)] text-[color:var(--color-luxe-text)] hover:bg-[color:var(--color-luxe-accent)] hover:text-white'
+            }`}
+          >
+            {tag}
+          </a>
+        ))}
+      </div>
+    </div>
+
+    {filteredPosts.length > 0 ? (
+      <div class="grid gap-8 md:grid-cols-2">
+        {filteredPosts.map(post => (
+          <BlogCard 
+            post={post} 
+            buildUrl={buildUrl} 
+            searchQuery={searchQuery}
+          />
+        ))}
+      </div>
+    ) : (
+      <div class="text-center py-12">
+        <p class="text-xl text-[color:var(--color-luxe-subtext)]">
+          {searchQuery 
+            ? `No posts found matching "${searchQuery}"`
+            : currentTag 
+              ? `No posts found with tag "${currentTag}"`
+              : "No posts found"}
+        </p>
+      </div>
+    )}
+  </div>
+</Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('searchForm');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const searchInput = form.querySelector('input[name="q"]') as HTMLInputElement;
+        const searchValue = searchInput.value.trim();
+        
+        // If search is empty, just go to /blog without any parameters
+        if (!searchValue) {
+          window.location.href = '/blog';
+        } else {
+          // Otherwise, submit the form with the search value
+          const formData = new FormData(form as HTMLFormElement);
+          const searchParams = new URLSearchParams(formData);
+          window.location.href = `/blog?${searchParams.toString()}`;
+        }
+      });
+    }
+  });
+</script> 

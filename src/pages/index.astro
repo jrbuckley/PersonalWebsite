@@ -1,8 +1,29 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+interface BlogPost {
+	title: string;
+	description: string;
+	publishDate: Date;
+	author: string;
+	tags: string[];
+	slug: string;
+	image?: string;
+}
+
+// This would typically come from a CMS or markdown files
+const latestPosts: BlogPost[] = [
+	{
+		title: "Getting Started with React",
+		description: "Learn the basics of React and how to build your first component.",
+		publishDate: new Date("2024-03-27"),
+		author: "Jorge Buckley",
+		tags: ["React", "JavaScript", "Web Development"],
+		slug: "getting-started-with-react",
+		image: "/blog/react-basics.jpg"
+	},
+	// Add more blog posts here
+];
 ---
 
 <Layout title="Jorge Buckley - Software Engineer">
@@ -122,6 +143,58 @@ import Layout from '../layouts/Layout.astro';
 						<p class="text-[color:var(--color-luxe-subtext)]">Description of your second project goes here.</p>
 					</div>
 				</a>
+			</div>
+		</section>
+
+		<!-- Latest Blog Posts -->
+		<section aria-labelledby="blog-heading">
+			<div class="flex justify-between items-center mb-6">
+				<h2 id="blog-heading" class="text-2xl font-semibold text-[color:var(--color-luxe-text)]">Latest Blog Posts</h2>
+				<a href="/blog" class="text-[color:var(--color-luxe-accent)] hover:text-[color:var(--color-luxe-link)] transition-colors flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-[color:var(--color-luxe-accent)] focus:ring-offset-2 rounded-lg px-2 py-1" aria-label="View all blog posts">
+					View All Posts
+					<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+					</svg>
+				</a>
+			</div>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+				{latestPosts.map(post => (
+					<a href={`/blog/${post.slug}`} class="group focus:outline-none focus:ring-2 focus:ring-[color:var(--color-luxe-accent)] focus:ring-offset-2 rounded-lg">
+						<article class="bg-[color:var(--color-luxe-card)] rounded-lg overflow-hidden transition-transform group-hover:scale-105">
+							{post.image && (
+								<img
+									src={post.image}
+									alt={post.title}
+									class="w-full h-48 object-cover"
+									width="800"
+									height="300"
+								/>
+							)}
+							<div class="p-6">
+								<h3 class="text-lg font-medium text-[color:var(--color-luxe-text)] mb-2">{post.title}</h3>
+								<p class="text-[color:var(--color-luxe-subtext)] mb-4">{post.description}</p>
+								<div class="flex items-center gap-4 text-sm text-[color:var(--color-luxe-subtext)]">
+									<time datetime={post.publishDate.toISOString()}>
+										{post.publishDate.toLocaleDateString('en-US', {
+											year: 'numeric',
+											month: 'long',
+											day: 'numeric'
+										})}
+									</time>
+									<span>•</span>
+									<span>{post.author}</span>
+								</div>
+								<div class="flex flex-wrap gap-2 mt-4">
+									{post.tags.map(tag => (
+										<span class="px-2 py-1 bg-[color:var(--color-luxe-background)] text-[color:var(--color-luxe-text)] rounded-full text-xs">
+											{tag}
+										</span>
+									))}
+								</div>
+							</div>
+						</article>
+					</a>
+				))}
 			</div>
 		</section>
 	</div>
