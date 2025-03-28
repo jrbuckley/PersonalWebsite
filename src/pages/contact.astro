@@ -15,8 +15,8 @@ import Layout from '../layouts/Layout.astro';
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[color:var(--color-luxe-accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
-            <a href="mailto:your.email@example.com" class="text-[color:var(--color-luxe-subtext)] hover:text-[color:var(--color-luxe-text)]">
-              your.email@example.com
+            <a href="mailto:jbuckley.tech@gmail.com" class="text-[color:var(--color-luxe-subtext)] hover:text-[color:var(--color-luxe-text)]">
+              jbuckley.tech@gmail.com
             </a>
           </div>
           <div class="flex items-center space-x-4">
@@ -24,7 +24,7 @@ import Layout from '../layouts/Layout.astro';
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
-            <span class="text-[color:var(--color-luxe-subtext)]">Your Location</span>
+            <span class="text-[color:var(--color-luxe-subtext)]">Miami, FL</span>
           </div>
           <div class="flex items-center space-x-4">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[color:var(--color-luxe-accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -48,25 +48,20 @@ import Layout from '../layouts/Layout.astro';
                 <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-.88-.018-2.013-1.225-2.013-1.225 0-1.412 1.057-1.412 2.047v5.57h-3v-11h3v1.517c.437-.623 1.33-1.523 2.33-1.523 2.31 0 3.184 1.523 3.184 3.506v6.5z"/>
               </svg>
             </a>
-            <a href="#" class="text-[color:var(--color-luxe-subtext)] hover:text-[color:var(--color-luxe-text)]">
-              <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-6h2v6zm-1-6.891c-.607 0-1.1-.496-1.1-1.109 0-.612.492-1.109 1.1-1.109s1.1.497 1.1 1.109c0 .613-.492 1.109-1.1 1.109zm8 6.891h-1.998v-2.861c0-1.881-2.002-1.722-2.002 0v2.861h-2v-6h2v1.093c.872-1.616 4-1.736 4 1.548v3.359z"/>
-              </svg>
-            </a>
           </div>
         </div>
       </div>
 
       <!-- Contact Form -->
       <div class="bg-[color:var(--color-luxe-card)] p-6 rounded-lg shadow-md">
-        <form class="space-y-6">
+        <form id="contactForm" class="space-y-6">
           <div>
             <label for="name" class="block text-sm font-medium text-[color:var(--color-luxe-text)]">Name</label>
             <input
               type="text"
               id="name"
               name="name"
-              class="mt-1 block w-full rounded-md bg-[color:var(--color-luxe-background)] border-[color:var(--color-luxe-subtext)]/20 text-[color:var(--color-luxe-text)] focus:border-[color:var(--color-luxe-link)] focus:ring-1 focus:ring-[color:var(--color-luxe-link)] outline-none"
+              class="mt-1 block w-full rounded-md bg-[color:var(--color-luxe-background)] border-[color:var(--color-luxe-subtext)]/20 text-[color:var(--color-luxe-text)] focus:border-[color:var(--color-luxe-link)] focus:ring-1 focus:ring-[color:var(--color-luxe-link)] outline-none px-4 py-2"
               required
             />
           </div>
@@ -76,7 +71,7 @@ import Layout from '../layouts/Layout.astro';
               type="email"
               id="email"
               name="email"
-              class="mt-1 block w-full rounded-md bg-[color:var(--color-luxe-background)] border-[color:var(--color-luxe-subtext)]/20 text-[color:var(--color-luxe-text)] focus:border-[color:var(--color-luxe--alt)] focus:ring-1 focus:ring-[color:var(--color-luxe-link)] outline-none"
+              class="mt-1 block w-full rounded-md bg-[color:var(--color-luxe-background)] border-[color:var(--color-luxe-subtext)]/20 text-[color:var(--color-luxe-text)] focus:border-[color:var(--color-luxe-link)] focus:ring-1 focus:ring-[color:var(--color-luxe-link)] outline-none px-4 py-2"
               required
             />
           </div>
@@ -86,10 +81,11 @@ import Layout from '../layouts/Layout.astro';
               id="message"
               name="message"
               rows="4"
-              class="mt-1 block w-full rounded-md bg-[color:var(--color-luxe-background)] border-[color:var(--color-luxe-subtext)]/20 text-[color:var(--color-luxe-text)] focus:border-[color:var(--color-luxe-link)] focus:ring-1 focus:ring-[color:var(--color-luxe-link)] outline-none"
+              class="mt-1 block w-full rounded-md bg-[color:var(--color-luxe-background)] border-[color:var(--color-luxe-subtext)]/20 text-[color:var(--color-luxe-text)] focus:border-[color:var(--color-luxe-link)] focus:ring-1 focus:ring-[color:var(--color-luxe-link)] outline-none px-4 py-2"
               required
             ></textarea>
           </div>
+          <div id="formMessage" class="hidden text-sm"></div>
           <button
             type="submit"
             class="w-full bg-[color:var(--color-luxe-accent)] text-[color:var(--color-luxe-text)] px-6 py-3 rounded-lg hover:opacity-90 transition-colors"
@@ -100,4 +96,85 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </div>
   </div>
-</Layout> 
+</Layout>
+
+<!-- Add reCAPTCHA script -->
+<script src="https://www.google.com/recaptcha/api.js?render=YOUR_RECAPTCHA_SITE_KEY"></script>
+
+<script>
+  const form = document.getElementById('contactForm');
+  const formMessage = document.getElementById('formMessage');
+  const RATE_LIMIT_KEY = 'contact_form_submission';
+  const RATE_LIMIT_DURATION = 3600000; // 1 hour in milliseconds
+
+  // Check rate limit
+  function checkRateLimit() {
+    const lastSubmission = localStorage.getItem(RATE_LIMIT_KEY);
+    if (lastSubmission) {
+      const timeSinceLastSubmission = Date.now() - parseInt(lastSubmission);
+      if (timeSinceLastSubmission < RATE_LIMIT_DURATION) {
+        const remainingTime = Math.ceil((RATE_LIMIT_DURATION - timeSinceLastSubmission) / 1000 / 60);
+        throw new Error(`Please wait ${remainingTime} minutes before submitting again.`);
+      }
+    }
+    return true;
+  }
+
+  // Update rate limit
+  function updateRateLimit() {
+    localStorage.setItem(RATE_LIMIT_KEY, Date.now().toString());
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    try {
+      // Check rate limit
+      checkRateLimit();
+
+      // Show loading state
+      formMessage.textContent = 'Sending message...';
+      formMessage.className = 'text-sm text-[color:var(--color-luxe-text)]';
+      formMessage.classList.remove('hidden');
+
+      // Get reCAPTCHA token
+      const recaptchaToken = await grecaptcha.execute('YOUR_RECAPTCHA_SITE_KEY', { action: 'submit' });
+
+      // Get form data
+      const formData = new FormData(form);
+      const data = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        message: formData.get('message'),
+        recaptchaToken
+      };
+
+      // Send data to API
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to send message');
+      }
+
+      // Update rate limit
+      updateRateLimit();
+
+      // Show success message
+      formMessage.textContent = 'Message sent successfully!';
+      formMessage.className = 'text-sm text-[color:var(--color-luxe-accent)]';
+      form.reset();
+    } catch (error) {
+      // Show error message
+      formMessage.textContent = error.message || 'Failed to send message. Please try again.';
+      formMessage.className = 'text-sm text-red-500';
+    }
+  });
+</script> 

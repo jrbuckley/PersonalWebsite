@@ -1,0 +1,153 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+interface Skill {
+  name: string;
+  level: number; // 1-5
+  description: string;
+  projects: string[];
+}
+
+const skills: Record<string, Skill[]> = {
+  frontend: [
+    {
+      name: "React",
+      level: 5,
+      description: "Extensive experience building modern web applications with React, including hooks, context, and performance optimization.",
+      projects: ["Project A", "Project B", "Project C"]
+    },
+    {
+      name: "Next.js",
+      level: 4,
+      description: "Proficient in building server-side rendered and static applications with Next.js.",
+      projects: ["Project D", "Project E"]
+    },
+    {
+      name: "TypeScript",
+      level: 4,
+      description: "Strong understanding of TypeScript for type-safe development.",
+      projects: ["Project F", "Project G"]
+    },
+    {
+      name: "Tailwind CSS",
+      level: 5,
+      description: "Expert in building responsive and modern UIs with Tailwind CSS.",
+      projects: ["Project H", "Project I"]
+    }
+  ],
+  backend: [
+    {
+      name: "Node.js",
+      level: 5,
+      description: "Deep knowledge of Node.js ecosystem and building scalable backend services.",
+      projects: ["Project J", "Project K"]
+    },
+    {
+      name: "Express",
+      level: 4,
+      description: "Experience building RESTful APIs and web applications with Express.",
+      projects: ["Project L", "Project M"]
+    },
+    {
+      name: "Python",
+      level: 4,
+      description: "Proficient in Python for backend development and data processing.",
+      projects: ["Project N", "Project O"]
+    },
+    {
+      name: "SQL",
+      level: 4,
+      description: "Strong understanding of SQL and database design principles.",
+      projects: ["Project P", "Project Q"]
+    }
+  ],
+  devops: [
+    {
+      name: "Docker",
+      level: 4,
+      description: "Experience containerizing applications and managing containerized environments.",
+      projects: ["Project R", "Project S"]
+    },
+    {
+      name: "AWS",
+      level: 3,
+      description: "Knowledge of AWS services and cloud infrastructure management.",
+      projects: ["Project T"]
+    },
+    {
+      name: "CI/CD",
+      level: 4,
+      description: "Experience setting up continuous integration and deployment pipelines.",
+      projects: ["Project U", "Project V"]
+    },
+    {
+      name: "Git",
+      level: 5,
+      description: "Expert in version control and collaborative development workflows.",
+      projects: ["All Projects"]
+    }
+  ],
+  mobile: [
+    {
+      name: "React Native",
+      level: 4,
+      description: "Experience building cross-platform mobile applications.",
+      projects: ["Project W", "Project X"]
+    },
+    {
+      name: "iOS",
+      level: 3,
+      description: "Basic understanding of iOS development with Swift.",
+      projects: ["Project Y"]
+    },
+    {
+      name: "Android",
+      level: 3,
+      description: "Basic understanding of Android development with Kotlin.",
+      projects: ["Project Z"]
+    }
+  ]
+};
+---
+
+<Layout title="Skills - Jorge Buckley">
+  <div class="max-w-4xl mx-auto space-y-12">
+    <h1 class="text-4xl font-bold text-[color:var(--color-luxe-text)] text-center mb-12">Skills & Expertise</h1>
+
+    {Object.entries(skills).map(([category, categorySkills]) => (
+      <div class="space-y-6">
+        <h2 class="text-2xl font-semibold text-[color:var(--color-luxe-text)] capitalize">{category} Development</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {categorySkills.map((skill) => (
+            <div class="bg-[color:var(--color-luxe-card)] p-6 rounded-lg">
+              <div class="flex justify-between items-start mb-4">
+                <h3 class="text-lg font-medium text-[color:var(--color-luxe-text)]">{skill.name}</h3>
+                <div class="flex gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class={`h-5 w-5 ${i < skill.level ? 'text-[color:var(--color-luxe-accent)]' : 'text-[color:var(--color-luxe-subtext)]/30'}`}
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.363 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.363-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+              </div>
+              <p class="text-[color:var(--color-luxe-subtext)] mb-4">{skill.description}</p>
+              <div class="space-y-2">
+                <h4 class="text-sm font-medium text-[color:var(--color-luxe-text)]">Related Projects:</h4>
+                <ul class="list-disc list-inside text-[color:var(--color-luxe-subtext)] text-sm">
+                  {skill.projects.map((project) => (
+                    <li>{project}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</Layout> 
