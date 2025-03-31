@@ -1,39 +1,50 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import BlogCard from '../../components/BlogCard.astro';
 import { getCollection } from 'astro:content';
 
-// Get all blog posts
-const blogPosts = await getCollection('blog');
+interface BlogPost {
+  title: string;
+  description: string;
+  publishDate: string;
+  author: string;
+  tags: string[];
+  slug: string;
+}
+
+// Get all blog posts from the content collection
+const posts = await getCollection('blog');
+
+// Convert the posts to our BlogPost interface format
+const blogPosts = posts.map(post => ({
+  title: post.data.title,
+  description: post.data.description,
+  publishDate: post.data.publishDate,
+  author: post.data.author,
+  tags: post.data.tags,
+  slug: post.slug
+}));
 
 // Get unique tags from all posts
-const uniqueTags = [...new Set(blogPosts.flatMap(post => post.data.tags))];
+const uniqueTags = [...new Set(blogPosts.flatMap(post => post.tags))];
 
 // Get current tag and search query from URL
-const url = new URL(Astro.request.url);
-const currentTag = url.searchParams.get('tag') || '';
-const searchQuery = url.searchParams.get('q')?.toLowerCase() || '';
-
-// Helper function to build URL with parameters
-const buildUrl = (params: Record<string, string>) => {
-  const searchParams = new URLSearchParams();
-  Object.entries(params).forEach(([key, value]) => {
-    if (value && value.trim() !== '') searchParams.append(key, value);
-  });
-  return `/blog${searchParams.toString() ? `?${searchParams.toString()}` : ''}`;
-};
+const currentTag = Astro.url.searchParams.get('tag') || '';
+const searchQuery = Astro.url.searchParams.get('search') || '';
 
 // Filter posts based on tag and search query
 const filteredPosts = blogPosts.filter(post => {
-  const matchesTag = !currentTag || post.data.tags.includes(currentTag);
+  const matchesTag = !currentTag || post.tags.includes(currentTag);
   const matchesSearch = !searchQuery || 
-    post.data.title.toLowerCase().includes(searchQuery) || 
-    post.data.description.toLowerCase().includes(searchQuery);
+    post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    post.description.toLowerCase().includes(searchQuery.toLowerCase());
   return matchesTag && matchesSearch;
 });
+
+// Sort posts by date (newest first)
+filteredPosts.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
 ---
 
-<Layout title="Blog - Jorge Buckley">
+<Layout title="Blog | Jorge Buckley">
   <div class="max-w-4xl mx-auto px-4 py-8">
     <header class="mb-8">
       <h1 class="text-4xl font-bold text-[color:var(--color-luxe-text)] mb-4">Blog</h1>
@@ -43,17 +54,24 @@ const filteredPosts = blogPosts.filter(post => {
     </header>
 
     <div class="mb-8">
-      <form action="/blog" method="GET" class="flex gap-4" id="searchForm">
+      <form 
+        id="searchForm" 
+        class="flex gap-4"
+        action="/blog"
+        method="GET"
+      >
         <input
           type="text"
-          name="q"
-          value={searchQuery}
+          name="search"
           placeholder="Search posts..."
+          value={searchQuery}
           class="flex-1 px-4 py-2 rounded-lg bg-[color:var(--color-luxe-card)] text-[color:var(--color-luxe-text)] border border-[color:var(--color-luxe-accent)] focus:outline-none focus:ring-2 focus:ring-[color:var(--color-luxe-accent)]"
+          aria-label="Search blog posts"
         />
         <button
           type="submit"
-          class="px-6 py-2 bg-[color:var(--color-luxe-accent)] text-white rounded-lg hover:bg-[color:var(--color-luxe-accent-hover)] transition-colors"
+          class="px-6 py-2 bg-[color:var(--color-luxe-accent)] text-white rounded-lg hover:opacity-90 transition-colors focus:outline-none focus:ring-2 focus:ring-[color:var(--color-luxe-accent)] focus:ring-offset-2 focus:ring-offset-[color:var(--color-luxe-background)]"
+          aria-label="Search"
         >
           Search
         </button>
@@ -63,7 +81,7 @@ const filteredPosts = blogPosts.filter(post => {
     <div class="mb-8">
       <div class="flex flex-wrap gap-2">
         <a
-          href={buildUrl({ q: searchQuery })}
+          href="/blog"
           class={`px-4 py-2 rounded-full text-sm transition-colors ${
             !currentTag
               ? 'bg-[color:var(--color-luxe-accent)] text-white'
@@ -72,9 +90,9 @@ const filteredPosts = blogPosts.filter(post => {
         >
           All Posts
         </a>
-        {uniqueTags.map(tag => (
+        {uniqueTags.map((tag: string) => (
           <a
-            href={buildUrl({ tag, q: searchQuery })}
+            href={`/blog?tag=${encodeURIComponent(tag)}${searchQuery ? `&search=${encodeURIComponent(searchQuery)}` : ''}`}
             class={`px-4 py-2 rounded-full text-sm transition-colors ${
               currentTag === tag
                 ? 'bg-[color:var(--color-luxe-accent)] text-white'
@@ -87,17 +105,36 @@ const filteredPosts = blogPosts.filter(post => {
       </div>
     </div>
 
-    {filteredPosts.length > 0 ? (
-      <div class="grid gap-8 md:grid-cols-2">
-        {filteredPosts.map(post => (
-          <BlogCard 
-            post={post} 
-            buildUrl={buildUrl} 
-            searchQuery={searchQuery}
-          />
-        ))}
-      </div>
-    ) : (
+    <div class="grid gap-8 md:grid-cols-2">
+      {filteredPosts.map(post => (
+        <a href={`/blog/${post.slug}`} class="group focus:outline-none focus:ring-2 focus:ring-[color:var(--color-luxe-accent)] focus:ring-offset-2 rounded-lg">
+          <article class="bg-[color:var(--color-luxe-card)] p-6 rounded-lg transition-transform group-hover:scale-105">
+            <h2 class="text-lg font-medium text-[color:var(--color-luxe-text)] mb-2">{post.title}</h2>
+            <p class="text-[color:var(--color-luxe-subtext)] mb-4">{post.description}</p>
+            <div class="flex items-center gap-4 text-sm text-[color:var(--color-luxe-subtext)]">
+              <time datetime={new Date(post.publishDate).toISOString()}>
+                {new Date(post.publishDate).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}
+              </time>
+              <span>•</span>
+              <span>{post.author}</span>
+            </div>
+            <div class="flex flex-wrap gap-2 mt-4">
+              {post.tags.map((tag: string) => (
+                <span class="px-2 py-1 bg-[color:var(--color-luxe-background)] text-[color:var(--color-luxe-text)] rounded-full text-xs">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </article>
+        </a>
+      ))}
+    </div>
+
+    {filteredPosts.length === 0 && (
       <div class="text-center py-12">
         <p class="text-xl text-[color:var(--color-luxe-subtext)]">
           {searchQuery 
@@ -112,24 +149,23 @@ const filteredPosts = blogPosts.filter(post => {
 </Layout>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('searchForm');
-    if (form) {
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const searchInput = form.querySelector('input[name="q"]') as HTMLInputElement;
-        const searchValue = searchInput.value.trim();
-        
-        // If search is empty, just go to /blog without any parameters
-        if (!searchValue) {
-          window.location.href = '/blog';
-        } else {
-          // Otherwise, submit the form with the search value
-          const formData = new FormData(form as HTMLFormElement);
-          const searchParams = new URLSearchParams(formData);
-          window.location.href = `/blog?${searchParams.toString()}`;
-        }
-      });
+  // Handle form submission
+  document.getElementById('searchForm')?.addEventListener('submit', (e: Event) => {
+    e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    const searchInput = form.querySelector('input[name="search"]') as HTMLInputElement;
+    const searchValue = searchInput.value.trim();
+    
+    if (!searchValue) {
+      // If search is empty, redirect to /blog without parameters
+      window.location.href = '/blog';
+    } else {
+      // Otherwise, submit the form with the search value
+      form.submit();
     }
   });
-</script> 
+</script>
+
+<style>
+  /* Add any additional styles here */
+</style> 

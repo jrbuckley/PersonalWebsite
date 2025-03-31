@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
 
 interface BlogPost {
 	title: string;
@@ -11,19 +12,20 @@ interface BlogPost {
 	image?: string;
 }
 
-// This would typically come from a CMS or markdown files
-const latestPosts: BlogPost[] = [
-	{
-		title: "Getting Started with React",
-		description: "Learn the basics of React and how to build your first component.",
-		publishDate: new Date("2024-03-27"),
-		author: "Jorge Buckley",
-		tags: ["React", "JavaScript", "Web Development"],
-		slug: "getting-started-with-react",
-		image: ""
-	},
-	// Add more blog posts here
-];
+// Get latest blog posts
+const posts = await getCollection('blog');
+const latestPosts = posts
+	.sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime())
+	.slice(0, 3)
+	.map(post => ({
+		title: post.data.title,
+		description: post.data.description,
+		publishDate: post.data.publishDate,
+		author: post.data.author,
+		tags: post.data.tags,
+		slug: post.slug,
+		image: post.data.image
+	}));
 ---
 
 <Layout title="Jorge Buckley - Software Engineer">
@@ -160,37 +162,26 @@ const latestPosts: BlogPost[] = [
 			<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 				{latestPosts.map(post => (
 					<a href={`/blog/${post.slug}`} class="group focus:outline-none focus:ring-2 focus:ring-[color:var(--color-luxe-accent)] focus:ring-offset-2 rounded-lg">
-						<article class="bg-[color:var(--color-luxe-card)] rounded-lg overflow-hidden transition-transform group-hover:scale-105">
-							{post.image && (
-								<img
-									src={post.image}
-									alt={post.title}
-									class="w-full h-48 object-cover"
-									width="800"
-									height="300"
-								/>
-							)}
-							<div class="p-6">
-								<h3 class="text-lg font-medium text-[color:var(--color-luxe-text)] mb-2">{post.title}</h3>
-								<p class="text-[color:var(--color-luxe-subtext)] mb-4">{post.description}</p>
-								<div class="flex items-center gap-4 text-sm text-[color:var(--color-luxe-subtext)]">
-									<time datetime={post.publishDate.toISOString()}>
-										{post.publishDate.toLocaleDateString('en-US', {
-											year: 'numeric',
-											month: 'long',
-											day: 'numeric'
-										})}
-									</time>
-									<span>•</span>
-									<span>{post.author}</span>
-								</div>
-								<div class="flex flex-wrap gap-2 mt-4">
-									{post.tags.map(tag => (
-										<span class="px-2 py-1 bg-[color:var(--color-luxe-background)] text-[color:var(--color-luxe-text)] rounded-full text-xs">
-											{tag}
-										</span>
-									))}
-								</div>
+						<article class="bg-[color:var(--color-luxe-card)] p-6 rounded-lg transition-transform group-hover:scale-105">
+							<h3 class="text-lg font-medium text-[color:var(--color-luxe-text)] mb-2">{post.title}</h3>
+							<p class="text-[color:var(--color-luxe-subtext)] mb-4">{post.description}</p>
+							<div class="flex items-center gap-4 text-sm text-[color:var(--color-luxe-subtext)]">
+								<time datetime={new Date(post.publishDate).toISOString()}>
+									{new Date(post.publishDate).toLocaleDateString('en-US', {
+										year: 'numeric',
+										month: 'long',
+										day: 'numeric'
+									})}
+								</time>
+								<span>•</span>
+								<span>{post.author}</span>
+							</div>
+							<div class="flex flex-wrap gap-2 mt-4">
+								{post.tags.map(tag => (
+									<span class="px-2 py-1 bg-[color:var(--color-luxe-background)] text-[color:var(--color-luxe-text)] rounded-full text-xs">
+										{tag}
+									</span>
+								))}
 							</div>
 						</article>
 					</a>

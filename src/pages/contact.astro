@@ -102,8 +102,13 @@ import Layout from '../layouts/Layout.astro';
 <script src="https://www.google.com/recaptcha/api.js?render=YOUR_RECAPTCHA_SITE_KEY"></script>
 
 <script>
-  const form = document.getElementById('contactForm');
-  const formMessage = document.getElementById('formMessage');
+  // Declare grecaptcha type
+  declare const grecaptcha: {
+    execute: (siteKey: string, options: { action: string }) => Promise<string>;
+  };
+
+  const form = document.getElementById('contactForm') as HTMLFormElement;
+  const formMessage = document.getElementById('formMessage') as HTMLDivElement;
   const RATE_LIMIT_KEY = 'contact_form_submission';
   const RATE_LIMIT_DURATION = 3600000; // 1 hour in milliseconds
 
@@ -171,9 +176,10 @@ import Layout from '../layouts/Layout.astro';
       formMessage.textContent = 'Message sent successfully!';
       formMessage.className = 'text-sm text-[color:var(--color-luxe-accent)]';
       form.reset();
-    } catch (error) {
+    } catch (error: unknown) {
       // Show error message
-      formMessage.textContent = error.message || 'Failed to send message. Please try again.';
+      const errorMessage = error instanceof Error ? error.message : 'Failed to send message. Please try again.';
+      formMessage.textContent = errorMessage;
       formMessage.className = 'text-sm text-red-500';
     }
   });

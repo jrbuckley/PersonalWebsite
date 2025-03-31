@@ -29,8 +29,8 @@ const { post, buildUrl, searchQuery } = Astro.props;
     </p>
     <div class="flex items-center justify-between text-sm text-[color:var(--color-luxe-subtext)]">
       <div class="flex items-center gap-4">
-        <time datetime={post.data.publishDate.toISOString()}>
-          {post.data.publishDate.toLocaleDateString('en-US', { 
+        <time datetime={new Date(post.data.publishDate).toISOString()}>
+          {new Date(post.data.publishDate).toLocaleDateString('en-US', { 
             year: 'numeric', 
             month: 'long', 
             day: 'numeric' 
