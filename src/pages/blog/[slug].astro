@@ -32,13 +32,13 @@ const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encod
       <h1 class="text-4xl font-bold text-[color:var(--color-luxe-text)] mb-4">
         {post.data.title}
       </h1>
-      <div class="flex items-center justify-between text-[color:var(--color-luxe-text)] opacity-80">
-        <div class="flex items-center gap-4">
+      <div class="flex flex-wrap items-center gap-2 text-[color:var(--color-luxe-text)] opacity-80">
+        <div class="flex flex-wrap items-center gap-2">
           <span>{new Date(post.data.publishDate).toLocaleDateString()}</span>
-          <span>•</span>
+          <span class="hidden md:inline">•</span>
           <span>{post.data.author}</span>
         </div>
-        <div class="flex gap-2">
+        <div class="flex flex-wrap gap-2">
           {post.data.tags.map((tag: string) => (
             <a
               href={`/blog?tag=${encodeURIComponent(tag)}`}
