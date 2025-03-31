@@ -4,7 +4,7 @@ description: "Learn the basics of React and how to build your first component."
 publishDate: 2024-03-27
 author: "Jorge Buckley"
 tags: ["React", "JavaScript", "Web Development"]
-image: "/blog/react-basics.jpg"
+image: ""
 ---
 
 # Getting Started with React

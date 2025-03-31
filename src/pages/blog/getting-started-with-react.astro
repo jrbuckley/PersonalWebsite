@@ -1,28 +1,5 @@
 ---
 import BlogPost from '../../layouts/BlogPost.astro';
-import CodeExample from '../../components/CodeExample.astro';
-
-const buttonExample = `
-// Button component example
-const Button = ({ children, onClick }) => (
-  <button 
-    onClick={onClick}
-    className="bg-blue-500 text-white px-4 py-2 rounded"
-  >
-    {children}
-  </button>
-);`;
-
-const appExample = `
-// App component example
-const App = () => (
-  <div>
-    <h1>Welcome to My App</h1>
-    <Button onClick={() => alert('Button clicked!')}>
-      Click Me!
-    </Button>
-  </div>
-);`;
 ---
 
 <BlogPost
@@ -31,7 +8,7 @@ const App = () => (
   publishDate={new Date("2024-03-27")}
   author="Jorge Buckley"
   tags={["React", "JavaScript", "Web Development"]}
-  image="/blog/react-basics.jpg"
+  image=""
 >
   <p>
     React has become one of the most popular JavaScript libraries for building user interfaces. In this post, we'll explore the fundamentals of React and learn how to create your first component.
@@ -55,14 +32,10 @@ const App = () => (
     Let's create a simple button component to demonstrate the basics:
   </p>
 
-  <CodeExample code={buttonExample} />
-
   <h2>Using the Component</h2>
   <p>
     Here's how you would use the button component in your application:
   </p>
-
-  <CodeExample code={appExample} />
 
   <h2>Next Steps</h2>
   <p>
