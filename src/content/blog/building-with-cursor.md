@@ -1,11 +1,11 @@
 ---
-title: "Getting Started with React"
-description: "A comprehensive guide to building modern web applications with React"
-publishDate: "2024-03-27"
+title: "A Developer's Take on Building with Cursor"
+description: "I built my personal website using an AI coding agent called Cursor and a tech stack new to me. Here’s what worked, what didn’t, and what I learned."
+publishDate: "2025-05-05"
 author: "Jorge Buckley"
-tags: ["React", "Web Development", "JavaScript"]
-image: ""
-slug: "getting-started-with-react"
+tags: ["Cursor", "Web Development", "AI Tools"]
+image: "/blog-images/built-with-cursor-image.png"
+slug: "building-with-cursor"
 ---
 
 # Getting Started with React
