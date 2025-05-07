@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Allow: /blog/
+Allow: /about/
+Allow: /projects/
+Allow: /skills/
+Allow: /contact/
+
+# Sitemap location
+Sitemap: https://jorgebuckley.com/sitemap.xml 

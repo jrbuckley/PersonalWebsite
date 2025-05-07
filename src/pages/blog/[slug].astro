@@ -1,0 +1,111 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+// Get the slug from URL params
+const { slug } = Astro.params;
+
+// Get all blog posts
+const posts = await getCollection('blog');
+
+// Find the post with the matching slug
+const post = posts.find(post => post.slug === slug);
+
+// Check if post exists
+if (!post) {
+  return Astro.redirect('/404');
+}
+
+// Get the post data
+const { Content } = await post.render();
+
+// Generate the Twitter and LinkedIn share URLs
+const xUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(post.data.title)}&url=${encodeURIComponent(Astro.request.url)}`;
+const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(Astro.request.url)}`;
+
+// Generate the full URL for the current page
+const fullUrl = new URL(Astro.request.url).href;
+
+---
+
+<Layout title={`${post.data.title} | Blog | Jorge Buckley`}>
+  <head>
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content={post.data.title} />
+    <meta property="og:description" content={post.data.description} />
+    <meta property="og:url" content={fullUrl} />
+    {post.data.image && <meta property="og:image" content={new URL(post.data.image, fullUrl).href} />}
+    
+    <!-- X (Twitter) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={post.data.title} />
+    <meta name="twitter:description" content={post.data.description} />
+    {post.data.image && <meta name="twitter:image" content={new URL(post.data.image, fullUrl).href} />}
+    
+    <!-- LinkedIn -->
+    <meta property="og:site_name" content="Jorge Buckley" />
+    <meta property="article:author" content={post.data.author} />
+    <meta property="article:published_time" content={post.data.publishDate} />
+  </head>
+  
+  <article class="max-w-4xl mx-auto px-4 py-8">
+    <header class="mb-8">
+      <h1 class="text-4xl font-bold text-[color:var(--color-luxe-text)] mb-4">
+        {post.data.title}
+      </h1>
+      <div class="flex flex-wrap items-center gap-2 text-[color:var(--color-luxe-text)] opacity-80">
+        <div class="flex flex-wrap items-center gap-2">
+          <span>{new Date(post.data.publishDate).toLocaleDateString()}</span>
+          <span class="hidden md:inline">•</span>
+          <span>{post.data.author}</span>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          {post.data.tags.map((tag: string) => (
+            <a
+              href={`/blog?tag=${encodeURIComponent(tag)}`}
+              class="px-2 py-1 text-sm bg-[color:var(--color-luxe-accent)] text-white rounded border border-transparent hover:bg-transparent hover:border-[color:var(--color-luxe-accent)] transition-colors"
+              aria-label={`Filter posts by ${tag} tag`}
+            >
+              {tag}
+            </a>
+          ))}
+        </div>
+      </div>
+    </header>
+
+    <div class="prose prose-lg prose-invert max-w-none">
+      <Content />
+    </div>
+
+    <footer class="mt-12 pt-8 border-t border-[color:var(--color-luxe-border)]">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-4">
+          <span class="text-[color:var(--color-luxe-text)] opacity-80">
+            Written by {post.data.author}
+          </span>
+        </div>
+        <div class="flex gap-4">
+          <a
+            href={xUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-[color:var(--color-luxe-text)] opacity-80 hover:opacity-100 transition-opacity"
+            aria-label="Share on Twitter"
+          >
+            Share on Twitter
+          </a>
+          <a
+            href={linkedinUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-[color:var(--color-luxe-text)] opacity-80 hover:opacity-100 transition-opacity"
+            aria-label="Share on LinkedIn"
+          >
+            Share on LinkedIn
+          </a>
+        </div>
+      </div>
+    </footer>
+  </article>
+</Layout> 

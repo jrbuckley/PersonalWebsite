@@ -3,72 +3,76 @@ import Layout from '../layouts/Layout.astro';
 
 const projects = [
   {
-    title: "Project 1",
-    description: "A full-stack web application built with React and Node.js",
-    technologies: ["React", "Node.js", "MongoDB", "Express"],
-    image: "/project1.jpg",
+    title: "Personal Website",
+    description: "A content-driven personal website built with the help of Cursor AI",
+    technologies: ["Astro", "TypeScript", "Tailwind CSS", "Cursor AI"],
     link: "#",
-    github: "#"
+    github: "https://github.com/jrbuckley/PersonalWebsite"
   },
   {
-    title: "Project 2",
-    description: "A responsive e-commerce platform with real-time inventory management",
-    technologies: ["Vue.js", "Python", "PostgreSQL", "Django"],
-    image: "/project2.jpg",
+    title: "Sanita",
+    description: "An open-source social media platform centered around health and fitness",
+    technologies: ["ATProtocol", "Next.js", "TypeScript", "React Native", "Zustand"],
     link: "#",
-    github: "#"
+    github: "https://github.com/jrbuckley/sanita"
   },
   {
-    title: "Project 3",
-    description: "A machine learning-powered analytics dashboard",
-    technologies: ["Python", "TensorFlow", "React", "AWS"],
-    image: "/project3.jpg",
+    title: "Diamond",
+    description: "A mobile app for viewing college baseball scores and stats",
+    technologies: ["React Native", "TypeScript", "Tailwind CSS", "Expo", "Firebase"],
     link: "#",
-    github: "#"
+    github: "https://github.com/jrbuckley/Diamond"
+  },
+  // {
+  //   title: "JANE",
+  //   description: "Just Another Natural-language Entity: A voice-based AI assistant",
+  //   technologies: ["TBD"],
+  //   link: "#",
+  //   github: "https://github.com/jrbuckley/JANE"
+  // },
+  {
+    title: "The Picks",
+    description: "An iOS app that allows you and your friends to select NFL spreads and track your picks",
+    technologies: ["Swift", "SwiftUI", "Firebase"],
+    link: "#",
+    github: "https://github.com/jrbuckley/ThePicks"
   }
 ];
 ---
 
 <Layout title="Projects - Jorge Buckley">
   <div class="max-w-6xl mx-auto space-y-12">
-    <h1 class="text-4xl font-bold text-gray-900 dark:text-white text-center mb-12">My Projects</h1>
+    <h1 class="text-4xl font-bold text-[color:var(--color-luxe-text)] text-center mb-12">My Projects</h1>
     
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
       {projects.map(project => (
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
-          <div class="aspect-w-16 aspect-h-9 bg-gray-200 dark:bg-gray-700">
-            <img 
-              src={project.image} 
-              alt={project.title}
-              class="object-cover w-full h-full"
-            />
-          </div>
+        <div class="bg-[color:var(--color-luxe-card)] rounded-lg shadow-md overflow-hidden">
           <div class="p-6">
-            <h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-2">
+            <h2 class="text-2xl font-semibold text-[color:var(--color-luxe-text)] mb-2">
               {project.title}
             </h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-4">
+            <p class="text-[color:var(--color-luxe-subtext)] mb-4">
               {project.description}
             </p>
             <div class="flex flex-wrap gap-2 mb-4">
               {project.technologies.map(tech => (
-                <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 rounded-full text-sm">
+                <span class="px-3 py-1 bg-[color:var(--color-luxe-background)] text-[color:var(--color-luxe-text)] rounded-full text-sm">
                   {tech}
                 </span>
               ))}
             </div>
             <div class="flex space-x-4">
-              <a 
+              {/* <a 
                 href={project.link} 
-                class="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+                class="text-[color:var(--color-luxe-link)] hover:text-[color:var(--color-luxe-accent)]"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 Live Demo →
-              </a>
+              </a> */}
               <a 
                 href={project.github} 
-                class="text-gray-600 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
+                class="text-[color:var(--color-luxe-subtext)] hover:text-[color:var(--color-luxe-text)]"
                 target="_blank"
                 rel="noopener noreferrer"
               >

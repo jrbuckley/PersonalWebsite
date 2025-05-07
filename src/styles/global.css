@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+@theme {
+    --color-luxe-background: #0F0E17;
+    --color-luxe-card: #1A1A2E;
+    --color-luxe-text: #E4E4E4;
+    --color-luxe-subtext: #A7A9BE;
+    --color-luxe-accent: #3BAA94;
+    --color-luxe-accent-alt: #5BCBB1;
+    --color-luxe-link: #7F5AF0;
+  }

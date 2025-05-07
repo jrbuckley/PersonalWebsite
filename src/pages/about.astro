@@ -5,35 +5,45 @@ import Layout from '../layouts/Layout.astro';
 <Layout title="About Me - Jorge Buckley">
   <div class="max-w-4xl mx-auto space-y-12">
     <!-- Introduction -->
-    <section class="prose dark:prose-invert max-w-none">
-      <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-6">About Me</h1>
-      <p class="text-lg text-gray-600 dark:text-gray-300">
+    <section class="prose max-w-none space-y-4">
+      <h1 class="text-4xl font-bold text-[color:var(--color-luxe-text)] mb-6">About Me</h1>
+      <p class="text-lg text-[color:var(--color-luxe-subtext)]">
         I'm a Software Engineer with a passion for building innovative solutions and creating exceptional user experiences. 
         With a strong foundation in both frontend and backend development, I enjoy tackling complex challenges and turning ideas into reality.
+      </p>
+      <p class="text-lg text-[color:var(--color-luxe-subtext)]">
+        Outside of work, I’m a lifelong sports fan (Tampa Bay Rays, Florida Gators, and Carolina Panthers), a fitness enthusiast, and an avid cook and movie lover. 
+        You can check out my film reviews on <a href="https://letterboxd.com/hiphipjorge001/" target="_blank" class="text-[color:var(--color-luxe-accent)] hover:text-[color:var(--color-luxe-link)]">Letterboxd</a>.
+      </p>
+      <p class="text-lg text-[color:var(--color-luxe-subtext)]">
+        I’m also building <a href="https://selumastudio.com" target="_blank" class="text-[color:var(--color-luxe-accent)] hover:text-[color:var(--color-luxe-link)]">Seluma Studio</a>, a future-facing parent brand for the products, tools, and creative projects I’m launching outside of work.
       </p>
     </section>
 
     <!-- Experience -->
     <section>
-      <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Experience</h2>
+      <h2 class="text-3xl font-bold text-[color:var(--color-luxe-text)] mb-6">Experience</h2>
       <div class="space-y-8">
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Senior Software Engineer</h3>
-          <p class="text-gray-600 dark:text-gray-300">Company Name • 2020 - Present</p>
-          <ul class="list-disc list-inside mt-4 text-gray-600 dark:text-gray-300">
-            <li>Led development of key features and improvements</li>
-            <li>Mentored junior developers and conducted code reviews</li>
-            <li>Implemented best practices and coding standards</li>
+        <div class="bg-[color:var(--color-luxe-card)] p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-semibold text-[color:var(--color-luxe-text)]">Software Engineer</h3>
+          <p class="text-[color:var(--color-luxe-subtext)]">American Express • 2022 - Present</p>
+          <ul class="list-disc pl-6 mt-4 text-[color:var(--color-luxe-subtext)] space-y-2">
+            <li>Led front-end development for a generative AI marketing tool using React and integrating with LLMs.</li>
+            <li>Developed REST APIs in Python to extract relevant data from PDFs and images using Google Docs AI.</li>
+            <li>Ensured high code quality by achieving extensive front-end test coverage using Jest and React Testing Library.</li>
+            <li>Served as UI lead across three scrum teams, overseeing development for multiple marketing technology applications.</li>
+            <li>Led interviews for React engineer candidates, assessing technical proficiency and team fit.</li>
+            <li>Mentored junior engineers on React best practices, code quality, and performance optimization while conducting detailed pull request reviews to ensure adherence to standards and project requirements.</li>
           </ul>
         </div>
 
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Software Engineer</h3>
-          <p class="text-gray-600 dark:text-gray-300">Previous Company • 2018 - 2020</p>
-          <ul class="list-disc list-inside mt-4 text-gray-600 dark:text-gray-300">
-            <li>Developed and maintained web applications</li>
-            <li>Collaborated with cross-functional teams</li>
-            <li>Optimized application performance</li>
+        <div class="bg-[color:var(--color-luxe-card)] p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-semibold text-[color:var(--color-luxe-text)]">Technology Senior Analyst</h3>
+          <p class="text-[color:var(--color-luxe-subtext)]">Accenture • 2020 - 2022</p>
+          <ul class="list-disc pl-6 mt-4 text-[color:var(--color-luxe-subtext)] space-y-2">
+            <li>Updated PEGA applications for ADA compliance by writing JavaScript functions and designing UI/UX mockups.</li>
+            <li>Conducted Boomi testing for EHRs in Salesforce, using SOQL queries to validate vaccination records.</li>
+            <li>Led the organization and facilitation of the Hour of Code volunteer event, engaging 300+ students across 5 schools (grades 2-8) in hands-on coding activities.</li>
           </ul>
         </div>
       </div>
@@ -41,34 +51,49 @@ import Layout from '../layouts/Layout.astro';
 
     <!-- Education -->
     <section>
-      <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Education</h2>
-      <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Bachelor of Science in Computer Science</h3>
-        <p class="text-gray-600 dark:text-gray-300">University Name • 2014 - 2018</p>
+      <h2 class="text-3xl font-bold text-[color:var(--color-luxe-text)] mb-6">Education</h2>
+      <div class="bg-[color:var(--color-luxe-card)] p-6 rounded-lg shadow-md">
+        <h3 class="text-xl font-semibold text-[color:var(--color-luxe-text)]">Bachelor of Science in Computer Science</h3>
+        <p class="text-[color:var(--color-luxe-subtext)]">University Of Florida • 2016 - 2020</p>
       </div>
     </section>
 
     <!-- Interests -->
     <section>
-      <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Interests</h2>
+      <h2 class="text-3xl font-bold text-[color:var(--color-luxe-text)] mb-6">Interests</h2>
       <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md text-center">
-          <p class="text-gray-600 dark:text-gray-300">Web Development</p>
+        <div class="bg-[color:var(--color-luxe-card)] p-4 rounded-lg shadow-md flex items-center justify-center min-h-[80px] text-center">
+          <p class="text-[color:var(--color-luxe-subtext)]">Web/Mobile Development</p>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md text-center">
-          <p class="text-gray-600 dark:text-gray-300">Cloud Computing</p>
+        <div class="bg-[color:var(--color-luxe-card)] p-4 rounded-lg shadow-md flex items-center justify-center min-h-[80px] text-center">
+          <p class="text-[color:var(--color-luxe-subtext)]">AGI Exploration</p>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md text-center">
-          <p class="text-gray-600 dark:text-gray-300">Machine Learning</p>
+        <div class="bg-[color:var(--color-luxe-card)] p-4 rounded-lg shadow-md flex items-center justify-center min-h-[80px] text-center">
+          <p class="text-[color:var(--color-luxe-subtext)]">Decentralized Systems</p>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md text-center">
-          <p class="text-gray-600 dark:text-gray-300">Open Source</p>
+        <div class="bg-[color:var(--color-luxe-card)] p-4 rounded-lg shadow-md flex items-center justify-center min-h-[80px] text-center">
+          <p class="text-[color:var(--color-luxe-subtext)]">Open Source Contributions</p>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md text-center">
-          <p class="text-gray-600 dark:text-gray-300">UI/UX Design</p>
+        <div class="bg-[color:var(--color-luxe-card)] p-4 rounded-lg shadow-md flex items-center justify-center min-h-[80px] text-center">
+          <p class="text-[color:var(--color-luxe-subtext)]">UI/UX Design</p>
         </div>
-        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md text-center">
-          <p class="text-gray-600 dark:text-gray-300">DevOps</p>
+        <div class="bg-[color:var(--color-luxe-card)] p-4 rounded-lg shadow-md flex items-center justify-center min-h-[80px] text-center">
+          <p class="text-[color:var(--color-luxe-subtext)]">AI & Machine Learning</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Languages -->
+    <section>
+      <h2 class="text-3xl font-bold text-[color:var(--color-luxe-text)] mb-6">Languages</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="bg-[color:var(--color-luxe-card)] p-4 rounded-lg shadow-md text-center">
+          <p class="text-[color:var(--color-luxe-subtext)]">English</p>
+          <p class="text-sm text-[color:var(--color-luxe-subtext)] opacity-75">Native</p>
+        </div>
+        <div class="bg-[color:var(--color-luxe-card)] p-4 rounded-lg shadow-md text-center">
+          <p class="text-[color:var(--color-luxe-subtext)]">Spanish</p>
+          <p class="text-sm text-[color:var(--color-luxe-subtext)] opacity-75">Fluent</p>
         </div>
       </div>
     </section>
