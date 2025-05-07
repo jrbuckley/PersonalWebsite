@@ -3,9 +3,17 @@ import '../styles/global.css';
 
 interface Props {
 	title: string;
+	description?: string;
+	image?: string;
+	canonicalURL?: string;
 }
 
-const { title } = Astro.props;
+const { 
+	title,
+	description = "Personal website of Jorge Buckley - Software Engineer",
+	image = "https://jorgebuckley.com/profile-image/profile.jpg",
+	canonicalURL = Astro.url.href
+} = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -17,7 +25,33 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<script defer src="https://umami-analytics-production-ed6d.up.railway.app/script.js" data-website-id="24e0e9d8-d8da-4c57-83e2-242231e219ba"></script>
-		<meta name="description" content="Personal website of Jorge Buckley - Software Engineer" />
+		
+		<!-- Primary Meta Tags -->
+		<meta name="title" content={title} />
+		<meta name="description" content={description} />
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={image} />
+		
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={canonicalURL} />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={image} />
+		
+		<!-- Canonical URL -->
+		<link rel="canonical" href={canonicalURL} />
+		
+		<!-- Additional Meta Tags -->
+		<meta name="author" content="Jorge Buckley" />
+		<meta name="robots" content="index, follow" />
+		<meta name="language" content="English" />
+		<meta name="revisit-after" content="7 days" />
 	</head>
 	<body class="min-h-screen bg-[color:var(--color-luxe-background)] text-[color:var(--color-luxe-text)]">
 		<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-[color:var(--color-luxe-accent)] text-[color:var(--color-luxe-text)] px-4 py-2 rounded-lg">
