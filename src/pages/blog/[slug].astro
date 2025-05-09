@@ -20,41 +20,51 @@ if (!post) {
 const { Content } = await post.render();
 
 // Generate the Twitter and LinkedIn share URLs
-const xUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(post.data.title)}&url=${encodeURIComponent(Astro.request.url)}`;
-const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(Astro.request.url)}`;
+const currentUrl = new URL(Astro.request.url);
+const xUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(post.data.title)}&url=${encodeURIComponent(currentUrl.href)}`;
+const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl.href)}`;
 
 // Generate the full URL for the current page
-const fullUrl = new URL(Astro.request.url).href;
+const fullUrl = currentUrl.href;
+
+// Generate absolute URL for the post image
+const imageUrl = post.data.image 
+  ? post.data.image.startsWith('http') 
+    ? post.data.image 
+    : new URL(post.data.image, Astro.site).href 
+  : undefined;
 
 ---
 
-<Layout title={`${post.data.title} | Blog | Jorge Buckley`}>
+<Layout 
+  title={`${post.data.title} | Blog | Jorge Buckley`}
+  description={post.data.description}
+  image={imageUrl}
+>
   <head>
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article" />
     <meta property="og:title" content={post.data.title} />
     <meta property="og:description" content={post.data.description} />
     <meta property="og:url" content={fullUrl} />
-    {post.data.image && <meta property="og:image" content={new URL(post.data.image, fullUrl).href} />}
+    {imageUrl && (
+      <>
+        <meta property="og:image" content={imageUrl} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+      </>
+    )}
     
     <!-- X (Twitter) -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={post.data.title} />
     <meta name="twitter:description" content={post.data.description} />
-    {post.data.image && <meta name="twitter:image" content={new URL(post.data.image, fullUrl).href} />}
+    {imageUrl && <meta name="twitter:image" content={imageUrl} />}
     
     <!-- LinkedIn -->
     <meta property="og:site_name" content="Jorge Buckley" />
     <meta property="article:author" content={post.data.author} />
     <meta property="article:published_time" content={post.data.publishDate} />
-    {post.data.image && (
-      <>
-        <meta property="og:image" content={new URL(post.data.image, fullUrl).href} />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta name="image" content={new URL(post.data.image, fullUrl).href} />
-      </>
-    )}
   </head>
   
   <article class="max-w-4xl mx-auto px-4 py-8">
