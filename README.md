@@ -1,18 +1,37 @@
-# Astro Starter Kit: Basics
+# Jorge Buckley's Personal Website
 
-```sh
-npm create astro@latest -- --template basics
-```
+A modern, responsive personal website built with Astro and Tailwind CSS. This site serves as my digital portfolio, showcasing my projects, skills, and blog posts.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+## Features
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+- **Modern Design**: Clean, responsive layout with a dark theme
+- **Blog System**: Markdown-based blog with filtering capabilities
+- **Project Showcase**: Interactive project gallery
+- **Skills Section**: Visual representation of technical skills
+- **Contact Form**: Easy way to get in touch
+- **Analytics**: Privacy-focused analytics with Umami
+- **SEO Optimized**: Meta tags, sitemap, and robots.txt
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+## Tech Stack
 
-## 🚀 Project Structure
+- [Astro](https://astro.build) - Static Site Generator
+- [Tailwind CSS](https://tailwindcss.com) - Utility-first CSS framework
+- [Vercel](https://vercel.com) - Deployment platform
+- [Umami](https://umami.is) - Privacy-focused analytics
+
+## Development
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+## Project Structure
 
 Inside of your Astro project, you'll see the following folders and files:
 
@@ -46,3 +65,17 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+## Deployment
+
+The site is automatically deployed to Vercel when changes are pushed to the main branch.
+
+## License
+
+MIT License - feel free to use this code for your own projects.
+
+## Contact
+
+- Website: [jorgebuckley.com](https://jorgebuckley.com)
+- GitHub: [@jrbuckley](https://github.com/jrbuckley)
+- LinkedIn: [jorge-buckley](https://linkedin.com/in/jorge-buckley)
