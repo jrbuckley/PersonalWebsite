@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Container from '../components/Container.astro';
 import ButtonLink from '../components/ButtonLink.astro';
 import Reveal from '../components/Reveal.astro';
-import { inquiryMailto, siteConfig } from '../content/site';
+import { siteConfig } from '../content/site';
 
 const checklist = [
   'Name',
@@ -41,7 +41,7 @@ const checklist = [
       <ul class="list-disc pl-5 space-y-2 text-[color:var(--color-luxe-subtext)]">
         {checklist.map((item) => <li>{item}</li>)}
       </ul>
-      <ButtonLink href={inquiryMailto()} umamiEvent="contact-email-cta">
+      <ButtonLink href={`mailto:${siteConfig.email}`} umamiEvent="contact-email-cta">
         Email {siteConfig.email}
       </ButtonLink>
     </Reveal>
@@ -59,7 +59,7 @@ const checklist = [
           <span class="font-medium text-[color:var(--color-luxe-text)]">Email:</span>{' '}
           <a
             href={`mailto:${siteConfig.email}`}
-            class="text-[color:var(--color-luxe-accent)] hover:underline focus:outline-none focus:ring-2 focus:ring-[color:var(--color-luxe-accent)] rounded"
+            class="text-[color:var(--color-luxe-accent)] underline underline-offset-4 hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[color:var(--color-luxe-accent)] rounded"
             data-umami-event="contact-email-link"
           >
             {siteConfig.email}

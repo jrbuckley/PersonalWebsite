@@ -14,6 +14,8 @@ export const GET: APIRoute = async ({ site }) => {
     { path: 'services', changefreq: 'monthly', priority: '0.9' },
     { path: 'work', changefreq: 'monthly', priority: '0.9' },
     { path: 'work/ai-marketing-workflow', changefreq: 'monthly', priority: '0.8' },
+    { path: 'work/document-compliance-review', changefreq: 'monthly', priority: '0.8' },
+    { path: 'work/shared-react-foundation', changefreq: 'monthly', priority: '0.8' },
     { path: 'work/pointpower', changefreq: 'monthly', priority: '0.8' },
     { path: 'about', changefreq: 'monthly', priority: '0.8' },
     { path: 'blog', changefreq: 'weekly', priority: '0.7' },

@@ -98,10 +98,21 @@ const absoluteImage = image.startsWith('http')
               }
             });
           },
-          { rootMargin: '0px 0px -8% 0px', threshold: 0.12 }
+          { rootMargin: '0px 0px 0px 0px', threshold: 0 }
         );
 
         reveals.forEach((el) => observer.observe(el));
+
+        // Reveal anything already in (or past) the viewport, including page-bottom CTAs.
+        requestAnimationFrame(() => {
+          reveals.forEach((el) => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+              el.classList.add('is-revealed');
+              observer.unobserve(el);
+            }
+          });
+        });
       }
 
       function initHeaderScroll() {

@@ -29,17 +29,44 @@ export const workItems: WorkItem[] = [
     href: '/work/ai-marketing-workflow',
   },
   {
+    slug: 'document-compliance-review',
+    title: 'Turning document review into an actionable product workflow',
+    category: 'professional',
+    status: 'Complete',
+    context:
+      'Marketing content needed to be checked against approved language and offer details across multi-page documents.',
+    role: 'Built React experiences and Python document-processing APIs that extracted content and surfaced discrepancies.',
+    outcome:
+      'Gave reviewers a structured way to find discrepancies and locate approved language.',
+    tags: ['React', 'Python', 'Document processing'],
+    featured: true,
+    href: '/work/document-compliance-review',
+  },
+  {
+    slug: 'shared-react-foundation',
+    title: 'Creating a reusable React foundation across multiple applications',
+    category: 'professional',
+    status: 'Complete',
+    context:
+      'Multiple application teams needed consistent frontend assets and patterns instead of rebuilding the same pieces in every repo.',
+    role: 'Built a shared library of React assets and worked across roughly a dozen engineers, including contractors.',
+    outcome:
+      'Provided shared building blocks used across multiple application repositories.',
+    tags: ['React', 'Design systems', 'Technical leadership'],
+    featured: true,
+    href: '/work/shared-react-foundation',
+  },
+  {
     slug: 'pointpower',
     title: 'PointPower',
     category: 'public',
     status: 'In progress',
     context:
       'Planning credit card rewards usually means bouncing between issuer sites and spreadsheets.',
-    role: "Building the React Native app and backend myself.",
+    role: 'Building the React Native app and backend myself.',
     outcome:
       'A working concept for planning rewards use. Architecture is still evolving.',
     tags: ['React Native', 'TypeScript', 'Expo', 'Supabase'],
-    featured: true,
     href: '/work/pointpower',
   },
   {

@@ -1,0 +1,109 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Container from '../../components/Container.astro';
+import ButtonLink from '../../components/ButtonLink.astro';
+---
+
+<Layout
+  title="Document compliance review | Jorge Buckley"
+  description="Case study: turning document review into an actionable product workflow with React and Python APIs."
+>
+  <Container class="space-y-10" width="narrow">
+    <header class="space-y-4">
+      <p class="text-sm text-[color:var(--color-luxe-accent)] m-0">Professional case study · Complete</p>
+      <h1 class="text-3xl md:text-4xl font-bold text-[color:var(--color-luxe-text)]">
+        Turning document review into an actionable product workflow
+      </h1>
+      <p class="text-lg text-[color:var(--color-luxe-subtext)]">
+        A product flow that helped reviewers check marketing documents against approved language and find problems faster.
+      </p>
+    </header>
+
+    <section class="space-y-3" aria-labelledby="context-heading">
+      <h2 id="context-heading" class="text-xl font-semibold text-[color:var(--color-luxe-text)]">Context</h2>
+      <p class="text-[color:var(--color-luxe-subtext)]">
+        Marketing content had to be checked against approved language and offer details. Reviewers were dealing with multi-page documents and needed a clearer path from upload to a usable finding.
+      </p>
+    </section>
+
+    <section class="space-y-3" aria-labelledby="challenge-heading">
+      <h2 id="challenge-heading" class="text-xl font-semibold text-[color:var(--color-luxe-text)]">Challenge</h2>
+      <p class="text-[color:var(--color-luxe-subtext)]">
+        Documents had to be processed, discrepancies surfaced clearly, and reviewers directed back to the right source material without digging through every page by hand.
+      </p>
+    </section>
+
+    <section class="space-y-3" aria-labelledby="role-heading">
+      <h2 id="role-heading" class="text-xl font-semibold text-[color:var(--color-luxe-text)]">Role</h2>
+      <p class="text-[color:var(--color-luxe-subtext)]">
+        I worked on the React experience and Python APIs that extracted text from PDFs and images, then presented comparison results in the UI. Broader product and platform work was a team effort.
+      </p>
+    </section>
+
+    <section class="space-y-3" aria-labelledby="approach-heading">
+      <h2 id="approach-heading" class="text-xl font-semibold text-[color:var(--color-luxe-text)]">Approach</h2>
+      <ul class="list-disc pl-5 space-y-2 text-[color:var(--color-luxe-subtext)]">
+        <li>Supported document upload and extraction so reviewers weren't stuck in a manual copy-paste loop.</li>
+        <li>Compared extracted content against approved language and surfaced discrepancies in the UI.</li>
+        <li>Linked findings back toward the approved source material so reviewers could act on them.</li>
+        <li>Kept product names, volumes, and internal architecture out of this public write-up.</li>
+      </ul>
+    </section>
+
+    <section class="space-y-3" aria-labelledby="result-heading">
+      <h2 id="result-heading" class="text-xl font-semibold text-[color:var(--color-luxe-text)]">Result</h2>
+      <p class="text-[color:var(--color-luxe-subtext)]">
+        Reviewers got a structured way to find discrepancies and locate approved language, instead of hunting through documents alone.
+      </p>
+    </section>
+
+    <section class="space-y-3" aria-labelledby="demonstrates-heading">
+      <h2 id="demonstrates-heading" class="text-xl font-semibold text-[color:var(--color-luxe-text)]">
+        What this shows
+      </h2>
+      <p class="text-[color:var(--color-luxe-subtext)]">
+        Complex workflow design, React UI work, Python APIs, document processing, and results people can explain.
+      </p>
+    </section>
+
+    <section class="space-y-3" aria-labelledby="tech-heading">
+      <h2 id="tech-heading" class="text-xl font-semibold text-[color:var(--color-luxe-text)]">Technologies</h2>
+      <ul class="flex flex-wrap gap-2 list-none m-0 p-0">
+        {['React', 'TypeScript', 'Python', 'Document AI / OCR', 'REST APIs'].map((tag) => (
+          <li class="px-2 py-1 bg-[color:var(--color-luxe-card)] border border-[color:var(--color-luxe-border)] text-[color:var(--color-luxe-subtext)] rounded text-sm">
+            {tag}
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section
+      class="bg-[color:var(--color-luxe-card)] border border-[color:var(--color-luxe-border)] rounded-lg p-6 space-y-4"
+      aria-labelledby="cs-cta-heading"
+    >
+      <h2 id="cs-cta-heading" class="text-xl font-semibold text-[color:var(--color-luxe-text)]">
+        Need a complex workflow UI?
+      </h2>
+      <p class="text-[color:var(--color-luxe-subtext)]">
+        I help teams turn messy review processes into clear product flows.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <ButtonLink href="/services#react-product" umamiEvent="case-compliance-services">
+          View React service
+        </ButtonLink>
+        <ButtonLink href="/contact" variant="secondary" umamiEvent="case-compliance-contact">
+          Get in touch
+        </ButtonLink>
+      </div>
+    </section>
+
+    <p>
+      <a
+        href="/work"
+        class="text-[color:var(--color-luxe-accent)] hover:underline focus:outline-none focus:ring-2 focus:ring-[color:var(--color-luxe-accent)] rounded"
+      >
+        ← Back to work
+      </a>
+    </p>
+  </Container>
+</Layout>
