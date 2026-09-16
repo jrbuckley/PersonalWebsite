@@ -1,0 +1,45 @@
+---
+import { siteConfig } from '../content/site';
+
+const pathname = Astro.url.pathname;
+
+function isActive(href: string): boolean {
+  if (href === '/') return pathname === '/';
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+---
+
+<header class="site-header sticky top-0 z-40 bg-[color:var(--color-luxe-card)] border-b border-[color:var(--color-luxe-border)]">
+  <nav class="max-w-4xl mx-auto px-4 py-4" aria-label="Main navigation">
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <a
+        href="/"
+        class="text-xl font-bold text-[color:var(--color-luxe-accent)] transition-opacity hover:opacity-85 focus:outline-none focus:ring-2 focus:ring-[color:var(--color-luxe-accent)] focus:ring-offset-2 focus:ring-offset-[color:var(--color-luxe-card)] rounded"
+        data-umami-event="nav-home"
+      >
+        Jorge Buckley
+      </a>
+      <ul class="flex flex-wrap gap-x-5 gap-y-2 list-none m-0 p-0">
+        {
+          siteConfig.nav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class:list={[
+                  'nav-link text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-[color:var(--color-luxe-accent)] focus:ring-offset-2 focus:ring-offset-[color:var(--color-luxe-card)] rounded',
+                  isActive(item.href)
+                    ? 'text-[color:var(--color-luxe-text)]'
+                    : 'text-[color:var(--color-luxe-subtext)] hover:text-[color:var(--color-luxe-text)]',
+                ]}
+                aria-current={isActive(item.href) ? 'page' : undefined}
+                data-umami-event={`nav-${item.label.toLowerCase()}`}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,109 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Container from '../../components/Container.astro';
+import ButtonLink from '../../components/ButtonLink.astro';
+---
+
+<Layout
+  title="AI marketing workflow | Jorge Buckley"
+  description="Case study: making AI-generated content reviewable inside an enterprise workflow."
+>
+  <Container class="space-y-10" width="narrow">
+    <header class="space-y-4">
+      <p class="text-sm text-[color:var(--color-luxe-accent)] m-0">Professional case study · Complete</p>
+      <h1 class="text-3xl md:text-4xl font-bold text-[color:var(--color-luxe-text)]">
+        Making AI-generated content reviewable inside an enterprise workflow
+      </h1>
+      <p class="text-lg text-[color:var(--color-luxe-subtext)]">
+        An early proof of concept where marketing teams could review and use language-model output inside their existing systems, not just stare at a demo chat box.
+      </p>
+    </header>
+
+    <section class="space-y-3" aria-labelledby="context-heading">
+      <h2 id="context-heading" class="text-xl font-semibold text-[color:var(--color-luxe-text)]">Context</h2>
+      <p class="text-[color:var(--color-luxe-subtext)]">
+        An enterprise marketing team wanted to see if a language model could help with content creation inside tools they already used. The tech was new to the group, and the UI had to fit enterprise constraints.
+      </p>
+    </section>
+
+    <section class="space-y-3" aria-labelledby="challenge-heading">
+      <h2 id="challenge-heading" class="text-xl font-semibold text-[color:var(--color-luxe-text)]">Challenge</h2>
+      <p class="text-[color:var(--color-luxe-subtext)]">
+        People needed to understand generated output, catch bad results, and edit before anything went live. The flow had to match how they already reviewed content.
+      </p>
+    </section>
+
+    <section class="space-y-3" aria-labelledby="role-heading">
+      <h2 id="role-heading" class="text-xl font-semibold text-[color:var(--color-luxe-text)]">Role</h2>
+      <p class="text-[color:var(--color-luxe-subtext)]">
+        I led the frontend for the proof of concept in React, wired to a language-model API, and worked with backend and product on what the UI owned vs. what the API owned.
+      </p>
+    </section>
+
+    <section class="space-y-3" aria-labelledby="approach-heading">
+      <h2 id="approach-heading" class="text-xl font-semibold text-[color:var(--color-luxe-text)]">Approach</h2>
+      <ul class="list-disc pl-5 space-y-2 text-[color:var(--color-luxe-subtext)]">
+        <li>Built the UI around clear states: idle, generating, review, edit, and error.</li>
+        <li>Put review at the center so people could inspect and change output before committing it.</li>
+        <li>Kept the model call behind a clear API boundary so the UI could handle loading, failure, and retry on its own.</li>
+        <li>Worked with product and backend to keep the pilot scoped to what we could show safely.</li>
+      </ul>
+    </section>
+
+    <section class="space-y-3" aria-labelledby="result-heading">
+      <h2 id="result-heading" class="text-xl font-semibold text-[color:var(--color-luxe-text)]">Result</h2>
+      <p class="text-[color:var(--color-luxe-subtext)]">
+        The pilot showed the idea could work in that environment and led to more exploration. It was an early proof of concept, not a full production launch.
+      </p>
+    </section>
+
+    <section class="space-y-3" aria-labelledby="demonstrates-heading">
+      <h2 id="demonstrates-heading" class="text-xl font-semibold text-[color:var(--color-luxe-text)]">
+        What this shows
+      </h2>
+      <p class="text-[color:var(--color-luxe-subtext)]">
+        React leadership, shipping through ambiguity, AI feature UI work, and collaborating inside a large company.
+      </p>
+    </section>
+
+    <section class="space-y-3" aria-labelledby="tech-heading">
+      <h2 id="tech-heading" class="text-xl font-semibold text-[color:var(--color-luxe-text)]">Technologies</h2>
+      <ul class="flex flex-wrap gap-2 list-none m-0 p-0">
+        {['React', 'TypeScript', 'Language-model API integration', 'Enterprise workflow UX'].map((tag) => (
+          <li class="px-2 py-1 bg-[color:var(--color-luxe-card)] border border-[color:var(--color-luxe-border)] text-[color:var(--color-luxe-subtext)] rounded text-sm">
+            {tag}
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section
+      class="bg-[color:var(--color-luxe-card)] border border-[color:var(--color-luxe-border)] rounded-lg p-6 space-y-4"
+      aria-labelledby="cs-cta-heading"
+    >
+      <h2 id="cs-cta-heading" class="text-xl font-semibold text-[color:var(--color-luxe-text)]">
+        Need something like this?
+      </h2>
+      <p class="text-[color:var(--color-luxe-subtext)]">
+        I help teams turn an existing AI capability into a reviewable product feature.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <ButtonLink href="/services#ai-integration" umamiEvent="case-ai-services">
+          View AI service
+        </ButtonLink>
+        <ButtonLink href="/contact" variant="secondary" umamiEvent="case-ai-contact">
+          Get in touch
+        </ButtonLink>
+      </div>
+    </section>
+
+    <p>
+      <a
+        href="/work"
+        class="text-[color:var(--color-luxe-accent)] hover:underline focus:outline-none focus:ring-2 focus:ring-[color:var(--color-luxe-accent)] rounded"
+      >
+        ← Back to work
+      </a>
+    </p>
+  </Container>
+</Layout>

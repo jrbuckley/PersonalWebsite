@@ -25,12 +25,15 @@ const filteredPosts = posts.filter(post => {
 filteredPosts.sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime());
 ---
 
-<Layout title="Blog | Jorge Buckley">
+<Layout
+  title="Notes | Jorge Buckley"
+  description="Writing on engineering, tooling, and things I'm learning."
+>
   <div class="max-w-4xl mx-auto px-4 py-8">
     <header class="mb-8">
-      <h1 class="text-4xl font-bold text-[color:var(--color-luxe-text)] mb-4">Blog</h1>
+      <h1 class="text-4xl font-bold text-[color:var(--color-luxe-text)] mb-4">Notes</h1>
       <p class="text-xl text-[color:var(--color-luxe-subtext)]">
-        Thoughts, tutorials, and insights about software development.
+        Writing on engineering, tooling, and things I'm learning while building.
       </p>
     </header>
 

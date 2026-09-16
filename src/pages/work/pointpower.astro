@@ -1,0 +1,107 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Container from '../../components/Container.astro';
+import ButtonLink from '../../components/ButtonLink.astro';
+---
+
+<Layout
+  title="PointPower | Jorge Buckley"
+  description="PointPower: a React Native app for planning credit card rewards. Still in progress."
+>
+  <Container class="space-y-10" width="narrow">
+    <header class="space-y-4">
+      <p class="text-sm text-[color:var(--color-luxe-accent)] m-0">Public project · In progress</p>
+      <h1 class="text-3xl md:text-4xl font-bold text-[color:var(--color-luxe-text)]">
+        PointPower
+      </h1>
+      <p class="text-lg text-[color:var(--color-luxe-subtext)]">
+        A React Native app I'm building to help plan and maximize credit card rewards, with a small backend behind it.
+      </p>
+    </header>
+
+    <section class="space-y-3" aria-labelledby="context-heading">
+      <h2 id="context-heading" class="text-xl font-semibold text-[color:var(--color-luxe-text)]">Context</h2>
+      <p class="text-[color:var(--color-luxe-subtext)]">
+        Rewards planning usually means bouncing between issuer sites, spreadsheets, and guesswork. PointPower tries to put the planning flow in one place.
+      </p>
+    </section>
+
+    <section class="space-y-3" aria-labelledby="role-heading">
+      <h2 id="role-heading" class="text-xl font-semibold text-[color:var(--color-luxe-text)]">Role</h2>
+      <p class="text-[color:var(--color-luxe-subtext)]">
+        I'm building the whole thing: React Native client, TypeScript throughout, and a Node/Supabase backend.
+      </p>
+    </section>
+
+    <section class="space-y-3" aria-labelledby="decisions-heading">
+      <h2 id="decisions-heading" class="text-xl font-semibold text-[color:var(--color-luxe-text)]">
+        One hard decision
+      </h2>
+      <p class="text-[color:var(--color-luxe-subtext)]">
+        I started with planning first, not a giant card catalog. The job is helping someone decide how to use rewards, so the UI leads with goals and scenarios instead of a flat list of every card feature.
+      </p>
+    </section>
+
+    <section class="space-y-3" aria-labelledby="architecture-heading">
+      <h2 id="architecture-heading" class="text-xl font-semibold text-[color:var(--color-luxe-text)]">
+        Implementation notes
+      </h2>
+      <ul class="list-disc pl-5 space-y-2 text-[color:var(--color-luxe-subtext)]">
+        <li>Expo and React Native for the mobile client.</li>
+        <li>Zustand for local planning state.</li>
+        <li>Supabase for backend services and data.</li>
+        <li>TypeScript across the stack so domain models stay clear as things change.</li>
+      </ul>
+    </section>
+
+    <section class="space-y-3" aria-labelledby="result-heading">
+      <h2 id="result-heading" class="text-xl font-semibold text-[color:var(--color-luxe-text)]">Status</h2>
+      <p class="text-[color:var(--color-luxe-subtext)]">
+        Still in progress. The concept is solid and the foundations work, but this isn't a launched consumer app yet.
+      </p>
+    </section>
+
+    <section class="space-y-3" aria-labelledby="next-heading">
+      <h2 id="next-heading" class="text-xl font-semibold text-[color:var(--color-luxe-text)]">
+        What I'd improve next
+      </h2>
+      <p class="text-[color:var(--color-luxe-subtext)]">
+        Better onboarding around one planning scenario, clearer empty and error states, and screenshots once the main flows are stable enough to show.
+      </p>
+    </section>
+
+    <section class="space-y-3" aria-labelledby="tech-heading">
+      <h2 id="tech-heading" class="text-xl font-semibold text-[color:var(--color-luxe-text)]">Technologies</h2>
+      <ul class="flex flex-wrap gap-2 list-none m-0 p-0">
+        {['Node.js', 'Supabase', 'Expo', 'React Native', 'TypeScript', 'Zustand'].map((tag) => (
+          <li class="px-2 py-1 bg-[color:var(--color-luxe-card)] border border-[color:var(--color-luxe-border)] text-[color:var(--color-luxe-subtext)] rounded text-sm">
+            {tag}
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <div class="flex flex-wrap gap-4">
+      <ButtonLink
+        href="https://github.com/jrbuckley/PointPower"
+        target="_blank"
+        rel="noopener noreferrer"
+        umamiEvent="case-pointpower-github"
+      >
+        View on GitHub
+      </ButtonLink>
+      <ButtonLink href="/services#react-product" variant="secondary" umamiEvent="case-pointpower-services">
+        React product development
+      </ButtonLink>
+    </div>
+
+    <p>
+      <a
+        href="/work"
+        class="text-[color:var(--color-luxe-accent)] hover:underline focus:outline-none focus:ring-2 focus:ring-[color:var(--color-luxe-accent)] rounded"
+      >
+        ← Back to work
+      </a>
+    </p>
+  </Container>
+</Layout>

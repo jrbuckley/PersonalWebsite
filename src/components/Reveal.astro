@@ -1,0 +1,27 @@
+---
+interface Props {
+  as?: 'div' | 'section' | 'article' | 'header' | 'footer';
+  class?: string;
+  delay?: number;
+  'aria-labelledby'?: string;
+  'aria-label'?: string;
+}
+
+const {
+  as: Tag = 'div',
+  class: className = '',
+  delay = 0,
+  'aria-labelledby': ariaLabelledby,
+  'aria-label': ariaLabel,
+} = Astro.props;
+---
+
+<Tag
+  class:list={['reveal', className]}
+  data-reveal
+  style={delay ? `--reveal-delay: ${delay}ms` : undefined}
+  aria-labelledby={ariaLabelledby}
+  aria-label={ariaLabel}
+>
+  <slot />
+</Tag>
