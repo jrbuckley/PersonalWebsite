@@ -1,0 +1,109 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Container from '../../components/Container.astro';
+import ButtonLink from '../../components/ButtonLink.astro';
+---
+
+<Layout
+  title="Shared React foundation | Jorge Buckley"
+  description="Case study: creating a reusable React foundation across multiple applications."
+>
+  <Container class="space-y-10" width="narrow">
+    <header class="space-y-4">
+      <p class="text-sm text-[color:var(--color-luxe-accent)] m-0">Professional case study · Complete</p>
+      <h1 class="text-3xl md:text-4xl font-bold text-[color:var(--color-luxe-text)]">
+        Creating a reusable React foundation across multiple applications
+      </h1>
+      <p class="text-lg text-[color:var(--color-luxe-subtext)]">
+        A shared React asset library that helped multiple teams stop rebuilding the same UI pieces in every repo.
+      </p>
+    </header>
+
+    <section class="space-y-3" aria-labelledby="context-heading">
+      <h2 id="context-heading" class="text-xl font-semibold text-[color:var(--color-luxe-text)]">Context</h2>
+      <p class="text-[color:var(--color-luxe-subtext)]">
+        Several application teams needed consistent frontend assets and patterns. Without a shared foundation, the same components and conventions got reimplemented with small differences each time.
+      </p>
+    </section>
+
+    <section class="space-y-3" aria-labelledby="challenge-heading">
+      <h2 id="challenge-heading" class="text-xl font-semibold text-[color:var(--color-luxe-text)]">Challenge</h2>
+      <p class="text-[color:var(--color-luxe-subtext)]">
+        Repeated implementation created drift and made coordinated changes harder across repositories. The library had to be useful enough that teams would actually adopt it.
+      </p>
+    </section>
+
+    <section class="space-y-3" aria-labelledby="role-heading">
+      <h2 id="role-heading" class="text-xl font-semibold text-[color:var(--color-luxe-text)]">Role</h2>
+      <p class="text-[color:var(--color-luxe-subtext)]">
+        I built a shared library of React assets and worked across roughly a dozen engineers, including contractors, on adoption, reviews, and standards.
+      </p>
+    </section>
+
+    <section class="space-y-3" aria-labelledby="approach-heading">
+      <h2 id="approach-heading" class="text-xl font-semibold text-[color:var(--color-luxe-text)]">Approach</h2>
+      <ul class="list-disc pl-5 space-y-2 text-[color:var(--color-luxe-subtext)]">
+        <li>Defined clear component boundaries and APIs so teams could reuse pieces without fighting the library.</li>
+        <li>Documented usage and expectations so adoption didn't depend on hallway knowledge.</li>
+        <li>Added testing and review standards to keep quality consistent as more people contributed.</li>
+        <li>Supported versioning and rollout across application repositories.</li>
+      </ul>
+    </section>
+
+    <section class="space-y-3" aria-labelledby="result-heading">
+      <h2 id="result-heading" class="text-xl font-semibold text-[color:var(--color-luxe-text)]">Result</h2>
+      <p class="text-[color:var(--color-luxe-subtext)]">
+        Shared building blocks used across multiple application repositories, with less one-off UI drift between teams.
+      </p>
+    </section>
+
+    <section class="space-y-3" aria-labelledby="demonstrates-heading">
+      <h2 id="demonstrates-heading" class="text-xl font-semibold text-[color:var(--color-luxe-text)]">
+        What this shows
+      </h2>
+      <p class="text-[color:var(--color-luxe-subtext)]">
+        Design-system thinking, technical leadership, reusable architecture, and influence across teams.
+      </p>
+    </section>
+
+    <section class="space-y-3" aria-labelledby="tech-heading">
+      <h2 id="tech-heading" class="text-xl font-semibold text-[color:var(--color-luxe-text)]">Technologies</h2>
+      <ul class="flex flex-wrap gap-2 list-none m-0 p-0">
+        {['React', 'TypeScript', 'Shared component library', 'Testing', 'Documentation'].map((tag) => (
+          <li class="px-2 py-1 bg-[color:var(--color-luxe-card)] border border-[color:var(--color-luxe-border)] text-[color:var(--color-luxe-subtext)] rounded text-sm">
+            {tag}
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section
+      class="bg-[color:var(--color-luxe-card)] border border-[color:var(--color-luxe-border)] rounded-lg p-6 space-y-4"
+      aria-labelledby="cs-cta-heading"
+    >
+      <h2 id="cs-cta-heading" class="text-xl font-semibold text-[color:var(--color-luxe-text)]">
+        Need shared frontend foundations?
+      </h2>
+      <p class="text-[color:var(--color-luxe-subtext)]">
+        I help teams build reusable React systems that other engineers can actually adopt.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <ButtonLink href="/services#react-product" umamiEvent="case-foundation-services">
+          View React service
+        </ButtonLink>
+        <ButtonLink href="/contact" variant="secondary" umamiEvent="case-foundation-contact">
+          Get in touch
+        </ButtonLink>
+      </div>
+    </section>
+
+    <p>
+      <a
+        href="/work"
+        class="text-[color:var(--color-luxe-accent)] hover:underline focus:outline-none focus:ring-2 focus:ring-[color:var(--color-luxe-accent)] rounded"
+      >
+        ← Back to work
+      </a>
+    </p>
+  </Container>
+</Layout>
