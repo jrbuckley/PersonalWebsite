@@ -1,0 +1,15 @@
+---
+interface Props {
+  class?: string;
+  as?: 'div' | 'section' | 'article';
+  width?: 'default' | 'narrow';
+}
+
+const { class: className = '', as: Tag = 'div', width = 'default' } = Astro.props;
+
+const widthClass = width === 'narrow' ? 'max-w-2xl' : 'max-w-4xl';
+---
+
+<Tag class:list={[widthClass, 'mx-auto w-full', className]}>
+  <slot />
+</Tag>

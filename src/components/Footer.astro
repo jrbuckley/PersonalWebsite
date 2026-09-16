@@ -1,0 +1,40 @@
+---
+import { siteConfig } from '../content/site';
+---
+
+<footer class="bg-[color:var(--color-luxe-card)] border-t border-[color:var(--color-luxe-border)] p-4 mt-12" role="contentinfo">
+  <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+    <p class="text-sm text-[color:var(--color-luxe-subtext)] m-0">
+      {siteConfig.name} · {siteConfig.location}
+    </p>
+    <div class="flex items-center gap-6">
+      <a
+        href={siteConfig.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="footer-link text-sm text-[color:var(--color-luxe-subtext)] hover:text-[color:var(--color-luxe-text)] focus:outline-none focus:ring-2 focus:ring-[color:var(--color-luxe-accent)] focus:ring-offset-2 focus:ring-offset-[color:var(--color-luxe-card)] rounded"
+        data-umami-event="footer-github"
+      >
+        GitHub
+      </a>
+      <a
+        href={siteConfig.linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="footer-link text-sm text-[color:var(--color-luxe-subtext)] hover:text-[color:var(--color-luxe-text)] focus:outline-none focus:ring-2 focus:ring-[color:var(--color-luxe-accent)] focus:ring-offset-2 focus:ring-offset-[color:var(--color-luxe-card)] rounded"
+        data-umami-event="footer-linkedin"
+      >
+        LinkedIn
+      </a>
+      <a
+        href={siteConfig.resumePath}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="footer-link text-sm text-[color:var(--color-luxe-subtext)] hover:text-[color:var(--color-luxe-text)] focus:outline-none focus:ring-2 focus:ring-[color:var(--color-luxe-accent)] focus:ring-offset-2 focus:ring-offset-[color:var(--color-luxe-card)] rounded"
+        data-umami-event="footer-resume"
+      >
+        Resume
+      </a>
+    </div>
+  </div>
+</footer>

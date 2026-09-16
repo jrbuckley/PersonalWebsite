@@ -1,0 +1,16 @@
+---
+description: Guardrails for the freelance client-acquisition site rework
+alwaysApply: true
+---
+
+# Site rework guardrails
+
+- Preserve Astro 5 and Tailwind CSS 4. Do not migrate frameworks.
+- Prefer `.astro` components and static rendering; add client JavaScript only when necessary.
+- Do not add dependencies without explaining why.
+- Do not change unrelated pages or styles.
+- Reuse design tokens from `src/styles/global.css`.
+- Meet semantic HTML and keyboard-accessibility requirements.
+- Never invent metrics, testimonials, availability, client names, or project outcomes.
+- Never include employer-confidential details or assets.
+- Run the production build after each task and report changed files.

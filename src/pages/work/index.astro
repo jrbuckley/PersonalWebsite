@@ -1,0 +1,86 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Container from '../../components/Container.astro';
+import WorkCard from '../../components/WorkCard.astro';
+import ButtonLink from '../../components/ButtonLink.astro';
+import Reveal from '../../components/Reveal.astro';
+import { workItems } from '../../content/work';
+
+const professional = workItems.filter((item) => item.category === 'professional');
+const publicProjects = workItems.filter((item) => item.category === 'public');
+---
+
+<Layout
+  title="Work | Jorge Buckley"
+  description="Professional case studies and side projects in React, frontend leadership, and AI feature work."
+>
+  <Container class="space-y-16">
+    <Reveal as="header" class="space-y-4 max-w-2xl">
+      <h1 class="text-4xl font-bold text-[color:var(--color-luxe-text)]">Work</h1>
+      <p class="text-lg text-[color:var(--color-luxe-subtext)]">
+        Professional work I can share publicly, plus side projects where I can show more of the code and product thinking.
+      </p>
+    </Reveal>
+
+    <Reveal as="section" aria-labelledby="professional-heading" class="space-y-6">
+      <h2 id="professional-heading" class="text-2xl font-semibold text-[color:var(--color-luxe-text)]">
+        Professional case studies
+      </h2>
+      <div class="grid grid-cols-1 gap-6">
+        {
+          professional.map((item) => (
+            <WorkCard
+              title={item.title}
+              context={item.context}
+              role={item.role}
+              outcome={item.outcome}
+              tags={item.tags}
+              href={item.href}
+              status={item.status}
+              umamiEvent={`work-card-${item.slug}`}
+            />
+          ))
+        }
+      </div>
+    </Reveal>
+
+    <Reveal as="section" aria-labelledby="public-heading" class="space-y-6">
+      <h2 id="public-heading" class="text-2xl font-semibold text-[color:var(--color-luxe-text)]">
+        Public projects
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {
+          publicProjects.map((item) => (
+            <WorkCard
+              title={item.title}
+              context={item.context}
+              role={item.role}
+              outcome={item.outcome}
+              tags={item.tags}
+              href={item.href}
+              status={item.status}
+              umamiEvent={`work-card-${item.slug}`}
+              external={item.href.startsWith('http')}
+            />
+          ))
+        }
+      </div>
+    </Reveal>
+
+    <Reveal
+      as="section"
+      class="bg-[color:var(--color-luxe-card)] border border-[color:var(--color-luxe-border)] rounded-lg p-8 space-y-4"
+      aria-labelledby="work-cta-heading"
+    >
+      <h2 id="work-cta-heading" class="text-2xl font-semibold text-[color:var(--color-luxe-text)]">
+        Working on something similar?
+      </h2>
+      <p class="text-[color:var(--color-luxe-subtext)]">
+        If you need help on a React product, a modernization pass, or an AI feature, email me.
+      </p>
+      <ButtonLink href="/contact" umamiEvent="work-contact-cta">
+        Get in touch
+      </ButtonLink>
+    </Reveal>
+  </Container>
+</Layout>

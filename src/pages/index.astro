@@ -1,192 +1,203 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Container from '../components/Container.astro';
+import ButtonLink from '../components/ButtonLink.astro';
+import WorkCard from '../components/WorkCard.astro';
+import Reveal from '../components/Reveal.astro';
+import { siteConfig } from '../content/site';
+import { homepageServiceCards } from '../content/services';
+import { featuredWork } from '../content/work';
 import { getCollection } from 'astro:content';
 
-interface BlogPost {
-	title: string;
-	description: string;
-	publishDate: Date;
-	author: string;
-	tags: string[];
-	slug: string;
-	image?: string;
-}
-
-// Get latest blog posts
 const posts = await getCollection('blog');
-const latestPosts = posts
-	.sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime())
-	.slice(0, 3)
-	.map(post => ({
-		title: post.data.title,
-		description: post.data.description,
-		publishDate: post.data.publishDate,
-		author: post.data.author,
-		tags: post.data.tags,
-		slug: post.slug,
-		image: post.data.image
-	}));
+const latestNote = posts
+  .sort(
+    (a, b) =>
+      new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime()
+  )
+  .at(0);
+
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: siteConfig.name,
+  url: siteConfig.siteUrl,
+  email: siteConfig.email,
+  jobTitle: 'Software Engineer',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Charlotte',
+    addressRegion: 'NC',
+    addressCountry: 'US',
+  },
+  sameAs: [siteConfig.github, siteConfig.linkedin],
+};
 ---
 
-<Layout title="Jorge Buckley - Software Engineer">
-	<div class="max-w-4xl mx-auto space-y-16">
-		<!-- Hero Section -->
-		<div class="flex flex-col md:flex-row items-center gap-8">
-			<div class="w-48 h-48 rounded-full overflow-hidden border-4 border-[color:var(--color-luxe-accent)]">
-				<img
-					src="/profile-image/profiletwo.jpeg"
-					alt="Jorge Buckley - Profile Picture"
-					class="w-full h-full object-cover scale-400 -translate-y-6 translate-x-0"
-					width="192"
-					height="192"
-				/>
-			</div>
-			<div class="text-center md:text-left">
-				<h1 class="text-4xl font-bold text-[color:var(--color-luxe-text)] mb-4">Jorge Buckley</h1>
-				<p class="text-xl text-[color:var(--color-luxe-subtext)] mb-6">Software Engineer • Founder of <a href="https://selumastudio.com" target="_blank" class="text-[color:var(--color-luxe-accent)] hover:text-[color:var(--color-luxe-link)] transition-colors">Seluma Studio</a> (coming soon)</p>
-				<div class="flex gap-4 justify-center md:justify-start">
-					<a href="/about" class="bg-[color:var(--color-luxe-accent)] text-[color:var(--color-luxe-text)] px-6 py-2 rounded-lg hover:opacity-90 transition-colors focus:outline-none focus:ring-2 focus:ring-[color:var(--color-luxe-accent)] focus:ring-offset-2" aria-label="Learn more about me">
-						About Me
-					</a>
-					<a href="/contact" class="bg-[color:var(--color-luxe-card)] text-[color:var(--color-luxe-text)] px-6 py-2 rounded-lg hover:opacity-90 transition-colors focus:outline-none focus:ring-2 focus:ring-[color:var(--color-luxe-accent)] focus:ring-offset-2" aria-label="Contact me">
-						Contact
-					</a>
-				</div>
-			</div>
-		</div>
+<Layout
+  title="Jorge Buckley | Software Engineer"
+  description="Senior React engineer in Charlotte. Freelance frontend work, side projects, and notes on building software."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(personJsonLd)} />
+  <Container class="space-y-20">
+    <Reveal as="section" class="space-y-6" aria-labelledby="hero-heading">
+      <p class="text-sm font-medium text-[color:var(--color-luxe-accent)] m-0">
+        Charlotte, NC · available for freelance
+      </p>
+      <h1 id="hero-heading" class="text-4xl md:text-5xl font-bold text-[color:var(--color-luxe-text)] leading-tight">
+        Jorge Buckley
+      </h1>
+      <p class="text-lg md:text-xl text-[color:var(--color-luxe-subtext)] max-w-2xl">
+        I'm a senior React engineer. I help teams ship solid product UIs, clean up painful frontends, and wire AI features into real workflows. This site is also my portfolio and a place to write.
+      </p>
+      <div class="flex flex-wrap gap-4 items-center">
+        <ButtonLink href="/services" umamiEvent="hero-view-services">
+          View services
+        </ButtonLink>
+        <ButtonLink href="/work" variant="secondary" umamiEvent="hero-see-work">
+          See selected work
+        </ButtonLink>
+        <ButtonLink href="/blog" variant="text" umamiEvent="hero-notes">
+          Read notes
+        </ButtonLink>
+      </div>
+    </Reveal>
 
-		<!-- Skills Section -->
-		<section aria-labelledby="skills-heading">
-			<div class="flex justify-between items-center mb-6">
-				<h2 id="skills-heading" class="text-2xl font-semibold text-[color:var(--color-luxe-text)]">Skills</h2>
-				<a href="/skills" class="text-[color:var(--color-luxe-accent)] hover:text-[color:var(--color-luxe-link)] transition-colors flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-[color:var(--color-luxe-accent)] focus:ring-offset-2 rounded-lg px-2 py-1" aria-label="View all skills">
-					View All Skills
-					<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-					</svg>
-				</a>
-			</div>
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-				<!-- Frontend -->
-				<a href="/skills#frontend" class="group focus:outline-none focus:ring-2 focus:ring-[color:var(--color-luxe-accent)] focus:ring-offset-2 rounded-lg">
-					<div class="bg-[color:var(--color-luxe-card)] p-6 rounded-lg transition-transform group-hover:scale-105">
-						<div class="flex items-center gap-3 mb-4">
-							<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[color:var(--color-luxe-accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-							</svg>
-							<h3 class="text-lg font-medium text-[color:var(--color-luxe-text)]">Frontend Development</h3>
-						</div>
-						<p class="text-[color:var(--color-luxe-subtext)]">React, Next.js, TypeScript, Tailwind CSS</p>
-					</div>
-				</a>
+    <Reveal as="section" aria-label="Credibility" class="border-y border-[color:var(--color-luxe-border)] py-6" delay={80}>
+      <p class="text-sm text-[color:var(--color-luxe-subtext)] m-0">
+        {siteConfig.proofStrip.join(' · ')}
+      </p>
+    </Reveal>
 
-				<!-- Backend -->
-				<a href="/skills#backend" class="group focus:outline-none focus:ring-2 focus:ring-[color:var(--color-luxe-accent)] focus:ring-offset-2 rounded-lg">
-					<div class="bg-[color:var(--color-luxe-card)] p-6 rounded-lg transition-transform group-hover:scale-105">
-						<div class="flex items-center gap-3 mb-4">
-							<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[color:var(--color-luxe-accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
-							</svg>
-							<h3 class="text-lg font-medium text-[color:var(--color-luxe-text)]">Backend Development</h3>
-						</div>
-						<p class="text-[color:var(--color-luxe-subtext)]">Node.js, Express, Python, SQL</p>
-					</div>
-				</a>
+    <Reveal as="section" aria-labelledby="services-heading" class="space-y-6">
+      <div class="space-y-2">
+        <h2 id="services-heading" class="text-2xl font-semibold text-[color:var(--color-luxe-text)]">
+          Freelance help
+        </h2>
+        <p class="text-[color:var(--color-luxe-subtext)]">
+          React and frontend work for teams that need senior help without hiring full-time.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {
+          homepageServiceCards.map((card, index) => (
+            <a
+              href={`/services#${card.id}`}
+              class="interactive-card group block bg-[color:var(--color-luxe-card)] border border-[color:var(--color-luxe-border)] rounded-lg p-6 h-full focus:outline-none focus:ring-2 focus:ring-[color:var(--color-luxe-accent)] focus:ring-offset-2 focus:ring-offset-[color:var(--color-luxe-background)]"
+              data-umami-event={`home-service-${card.id}`}
+              style={`transition-delay: ${index * 40}ms`}
+            >
+              <h3 class="text-lg font-medium text-[color:var(--color-luxe-text)] mb-3">
+                {card.title}
+              </h3>
+              <p class="text-sm text-[color:var(--color-luxe-subtext)] mb-4">
+                {card.description}
+              </p>
+              <span class="text-sm font-medium text-[color:var(--color-luxe-accent)] group-hover:underline">
+                Learn more
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </Reveal>
 
-				<!-- DevOps -->
-				<a href="/skills#devops" class="group focus:outline-none focus:ring-2 focus:ring-[color:var(--color-luxe-accent)] focus:ring-offset-2 rounded-lg">
-					<div class="bg-[color:var(--color-luxe-card)] p-6 rounded-lg transition-transform group-hover:scale-105">
-						<div class="flex items-center gap-3 mb-4">
-							<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[color:var(--color-luxe-accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-							</svg>
-							<h3 class="text-lg font-medium text-[color:var(--color-luxe-text)]">DevOps</h3>
-						</div>
-						<p class="text-[color:var(--color-luxe-subtext)]">Docker, AWS, CI/CD, Git</p>
-					</div>
-				</a>
+    <Reveal as="section" aria-labelledby="work-heading" class="space-y-6">
+      <div class="space-y-2">
+        <h2 id="work-heading" class="text-2xl font-semibold text-[color:var(--color-luxe-text)]">
+          Selected work
+        </h2>
+        <p class="text-[color:var(--color-luxe-subtext)]">
+          Some day-job work I can talk about publicly, plus projects of my own.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {
+          featuredWork.map((item) => (
+            <WorkCard
+              title={item.title}
+              context={item.context}
+              role={item.role}
+              outcome={item.outcome}
+              tags={item.tags}
+              href={item.href}
+              status={item.status}
+              umamiEvent={`home-work-${item.slug}`}
+            />
+          ))
+        }
+      </div>
+    </Reveal>
 
-				<!-- Mobile -->
-				<a href="/skills#mobile" class="group focus:outline-none focus:ring-2 focus:ring-[color:var(--color-luxe-accent)] focus:ring-offset-2 rounded-lg">
-					<div class="bg-[color:var(--color-luxe-card)] p-6 rounded-lg transition-transform group-hover:scale-105">
-						<div class="flex items-center gap-3 mb-4">
-							<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[color:var(--color-luxe-accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-							</svg>
-							<h3 class="text-lg font-medium text-[color:var(--color-luxe-text)]">Mobile Development</h3>
-						</div>
-						<p class="text-[color:var(--color-luxe-subtext)]">React Native, iOS, Android</p>
-					</div>
-				</a>
-			</div>
-		</section>
+    <Reveal as="section" aria-labelledby="why-heading" class="space-y-4 max-w-2xl">
+      <h2 id="why-heading" class="text-2xl font-semibold text-[color:var(--color-luxe-text)]">
+        How I like to work
+      </h2>
+      <p class="text-[color:var(--color-luxe-subtext)]">
+        I like figuring out what the product should do, then building the UI carefully. Clear screens, reusable pieces, and code your team can keep working with after I'm gone.
+      </p>
+    </Reveal>
 
-		<!-- Latest Projects -->
-		<section aria-labelledby="projects-heading">
-			<div class="flex justify-between items-center mb-6">
-				<h2 id="projects-heading" class="text-2xl font-semibold text-[color:var(--color-luxe-text)]">Latest Projects</h2>
-				<a href="/projects" class="text-[color:var(--color-luxe-accent)] hover:text-[color:var(--color-luxe-link)] transition-colors flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-[color:var(--color-luxe-accent)] focus:ring-offset-2 rounded-lg px-2 py-1" aria-label="View all projects">
-					View All Projects
-					<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-					</svg>
-				</a>
-			</div>
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-				<a href="/projects" class="group focus:outline-none focus:ring-2 focus:ring-[color:var(--color-luxe-accent)] focus:ring-offset-2 rounded-lg">
-					<div class="bg-[color:var(--color-luxe-card)] p-6 rounded-lg transition-transform group-hover:scale-105">
-						<h3 class="text-lg font-medium text-[color:var(--color-luxe-text)] mb-2">PointPower</h3>
-						<p class="text-[color:var(--color-luxe-subtext)]">App for identifying how to maximize and plan use of credit card rewards.</p>
-					</div>
-				</a>
-				<a href="/projects" class="group focus:outline-none focus:ring-2 focus:ring-[color:var(--color-luxe-accent)] focus:ring-offset-2 rounded-lg">
-					<div class="bg-[color:var(--color-luxe-card)] p-6 rounded-lg transition-transform group-hover:scale-105">
-						<h3 class="text-lg font-medium text-[color:var(--color-luxe-text)] mb-2">Smart Wallet</h3>
-						<p class="text-[color:var(--color-luxe-subtext)]">A modern, comprehensive financial planning web application built with React and TypeScript.</p>
-					</div>
-				</a>
-			</div>
-		</section>
+    {
+      latestNote && (
+        <Reveal as="section" aria-labelledby="notes-heading" class="space-y-4">
+          <div class="flex flex-wrap items-end justify-between gap-3">
+            <div class="space-y-2">
+              <h2 id="notes-heading" class="text-2xl font-semibold text-[color:var(--color-luxe-text)] m-0">
+                From the notes
+              </h2>
+              <p class="text-[color:var(--color-luxe-subtext)] m-0">
+                Stuff I've written about engineering and the tools I use.
+              </p>
+            </div>
+            <a
+              href="/blog"
+              class="text-sm font-medium text-[color:var(--color-luxe-accent)] hover:underline focus:outline-none focus:ring-2 focus:ring-[color:var(--color-luxe-accent)] rounded"
+              data-umami-event="home-all-notes"
+            >
+              All notes
+            </a>
+          </div>
+          <a
+            href={`/blog/${latestNote.slug}`}
+            class="interactive-card block bg-[color:var(--color-luxe-card)] border border-[color:var(--color-luxe-border)] rounded-lg p-6 focus:outline-none focus:ring-2 focus:ring-[color:var(--color-luxe-accent)] focus:ring-offset-2 focus:ring-offset-[color:var(--color-luxe-background)]"
+            data-umami-event="home-latest-note"
+          >
+            <h3 class="text-lg font-medium text-[color:var(--color-luxe-text)] mb-2">
+              {latestNote.data.title}
+            </h3>
+            <p class="text-sm text-[color:var(--color-luxe-subtext)] mb-3">
+              {latestNote.data.description}
+            </p>
+            <time
+              class="text-xs text-[color:var(--color-luxe-subtext)]"
+              datetime={new Date(latestNote.data.publishDate).toISOString()}
+            >
+              {new Date(latestNote.data.publishDate).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
+            </time>
+          </a>
+        </Reveal>
+      )
+    }
 
-		<!-- Latest Blog Posts -->
-		<section aria-labelledby="blog-heading">
-			<div class="flex justify-between items-center mb-6">
-				<h2 id="blog-heading" class="text-2xl font-semibold text-[color:var(--color-luxe-text)]">Latest Blog Posts</h2>
-				<a href="/blog" class="text-[color:var(--color-luxe-accent)] hover:text-[color:var(--color-luxe-link)] transition-colors flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-[color:var(--color-luxe-accent)] focus:ring-offset-2 rounded-lg px-2 py-1" aria-label="View all blog posts">
-					View All Posts
-					<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-					</svg>
-				</a>
-			</div>
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-				{latestPosts.map(post => (
-					<a href={`/blog/${post.slug}`} class="group focus:outline-none focus:ring-2 focus:ring-[color:var(--color-luxe-accent)] focus:ring-offset-2 rounded-lg">
-						<article class="bg-[color:var(--color-luxe-card)] p-4 md:p-6 rounded-lg transition-transform group-hover:scale-105">
-							<h3 class="text-lg font-medium text-[color:var(--color-luxe-text)] mb-2">{post.title}</h3>
-							<p class="text-[color:var(--color-luxe-subtext)] mb-3 md:mb-4 text-sm md:text-base">{post.description}</p>
-							<div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 text-sm text-[color:var(--color-luxe-subtext)]">
-								<time datetime={new Date(post.publishDate).toISOString()}>
-									{new Date(post.publishDate).toLocaleDateString('en-US', {
-										year: 'numeric',
-										month: 'long',
-										day: 'numeric'
-									})}
-								</time>
-								<span class="hidden md:inline">•</span>
-								<span>{post.author}</span>
-							</div>
-							<div class="flex flex-wrap gap-2 mt-3 md:mt-4">
-								{post.tags.map(tag => (
-									<span class="px-2 py-1 bg-[color:var(--color-luxe-background)] text-[color:var(--color-luxe-text)] rounded-full text-xs">
-										{tag}
-									</span>
-								))}
-							</div>
-						</article>
-					</a>
-				))}
-			</div>
-		</section>
-	</div>
+    <Reveal
+      as="section"
+      aria-labelledby="cta-heading"
+      class="bg-[color:var(--color-luxe-card)] border border-[color:var(--color-luxe-border)] rounded-lg p-8 space-y-4"
+    >
+      <h2 id="cta-heading" class="text-2xl font-semibold text-[color:var(--color-luxe-text)]">
+        Have a project in mind?
+      </h2>
+      <p class="text-[color:var(--color-luxe-subtext)] max-w-2xl">
+        Tell me what you're building, what's stuck, and when you need it. I'll say quickly if I'm a good fit. Or just say hi.
+      </p>
+      <ButtonLink href="/contact" umamiEvent="home-start-conversation">
+        Get in touch
+      </ButtonLink>
+    </Reveal>
+  </Container>
 </Layout>

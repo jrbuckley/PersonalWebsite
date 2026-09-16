@@ -1,101 +1,134 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Container from '../components/Container.astro';
+import ButtonLink from '../components/ButtonLink.astro';
+import Reveal from '../components/Reveal.astro';
+import { siteConfig } from '../content/site';
 ---
 
-<Layout title="About Me - Jorge Buckley">
-  <div class="max-w-4xl mx-auto space-y-12">
-    <!-- Introduction -->
-    <section class="prose max-w-none space-y-4">
-      <h1 class="text-4xl font-bold text-[color:var(--color-luxe-text)] mb-6">About Me</h1>
+<Layout
+  title="About | Jorge Buckley"
+  description="Software engineer with six years of experience in React and TypeScript. Side projects, notes, and freelance frontend work."
+>
+  <Container class="space-y-12" width="narrow">
+    <Reveal as="header" class="space-y-4">
+      <h1 class="text-4xl font-bold text-[color:var(--color-luxe-text)]">
+        I build interfaces teams can actually maintain.
+      </h1>
       <p class="text-lg text-[color:var(--color-luxe-subtext)]">
-        I'm a Software Engineer with a passion for building innovative solutions and creating exceptional user experiences. 
-        With a strong foundation in both frontend and backend development, I enjoy tackling complex challenges and turning ideas into reality.
+        I've been a software engineer for six years, mostly in React and TypeScript. At American Express I've led frontend work on marketing tech apps, mentored engineers, interviewed React candidates, and built AI and document-processing tools.
       </p>
       <p class="text-lg text-[color:var(--color-luxe-subtext)]">
-        Outside of work, I’m a lifelong sports fan (Tampa Bay Rays, Florida Gators, and Carolina Panthers), a fitness enthusiast, and an avid cook and movie lover. 
-        You can check out my film reviews on <a href="https://letterboxd.com/hiphipjorge001/" target="_blank" class="text-[color:var(--color-luxe-accent)] hover:text-[color:var(--color-luxe-link)]">Letterboxd</a>.
+        I care about making confusing workflows feel simple, and leaving code that other people can work with. I take freelance projects when the fit is right. This site is my portfolio and a place to write.
       </p>
       <p class="text-lg text-[color:var(--color-luxe-subtext)]">
-        I’m also building <a href="https://selumastudio.com" target="_blank" class="text-[color:var(--color-luxe-accent)] hover:text-[color:var(--color-luxe-link)]">Seluma Studio</a>, a future-facing parent brand for the products, tools, and creative projects I’m launching outside of work.
+        Outside of that, I build things under{' '}
+        <a
+          href={siteConfig.selumaStudio}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-[color:var(--color-luxe-accent)] hover:underline"
+        >
+          Seluma Studio
+        </a>{' '}
+        and post notes when I have something worth sharing.
       </p>
-    </section>
+    </Reveal>
 
-    <!-- Experience -->
-    <section>
-      <h2 class="text-3xl font-bold text-[color:var(--color-luxe-text)] mb-6">Experience</h2>
-      <div class="space-y-8">
-        <div class="bg-[color:var(--color-luxe-card)] p-6 rounded-lg shadow-md">
-          <h3 class="text-xl font-semibold text-[color:var(--color-luxe-text)]">Software Engineer</h3>
-          <p class="text-[color:var(--color-luxe-subtext)]">American Express • 2022 - Present</p>
-          <ul class="list-disc pl-6 mt-4 text-[color:var(--color-luxe-subtext)] space-y-2">
-            <li>Led front-end development for a generative AI marketing tool using React and integrating with LLMs.</li>
-            <li>Developed REST APIs in Python to extract relevant data from PDFs and images using Google Docs AI.</li>
-            <li>Ensured high code quality by achieving extensive front-end test coverage using Jest and React Testing Library.</li>
-            <li>Served as UI lead across three scrum teams, overseeing development for multiple marketing technology applications.</li>
-            <li>Led interviews for React engineer candidates, assessing technical proficiency and team fit.</li>
-            <li>Mentored junior engineers on React best practices, code quality, and performance optimization while conducting detailed pull request reviews to ensure adherence to standards and project requirements.</li>
+    <Reveal as="section" aria-labelledby="experience-heading" class="space-y-6">
+      <h2 id="experience-heading" class="text-2xl font-semibold text-[color:var(--color-luxe-text)]">
+        Experience
+      </h2>
+      <div class="space-y-6">
+        <article class="interactive-card border border-[color:var(--color-luxe-border)] rounded-lg p-6 space-y-3">
+          <div>
+            <h3 class="text-lg font-semibold text-[color:var(--color-luxe-text)] m-0">
+              Software Engineer
+            </h3>
+            <p class="text-sm text-[color:var(--color-luxe-subtext)] m-0 mt-1">
+              American Express · 2022 - Present
+            </p>
+          </div>
+          <ul class="list-disc pl-5 space-y-2 text-[color:var(--color-luxe-subtext)]">
+            <li>UI lead across three scrum teams for marketing technology applications.</li>
+            <li>Led frontend development for a generative AI marketing proof of concept using React and language-model integration.</li>
+            <li>Built Python REST APIs to extract relevant data from PDFs and images using document AI.</li>
+            <li>Led React engineer interviews and mentored junior engineers through reviews and standards.</li>
+            <li>Led contractor engineers while maintaining shared frontend quality expectations.</li>
           </ul>
-        </div>
+        </article>
 
-        <div class="bg-[color:var(--color-luxe-card)] p-6 rounded-lg shadow-md">
-          <h3 class="text-xl font-semibold text-[color:var(--color-luxe-text)]">Technology Senior Analyst</h3>
-          <p class="text-[color:var(--color-luxe-subtext)]">Accenture • 2020 - 2022</p>
-          <ul class="list-disc pl-6 mt-4 text-[color:var(--color-luxe-subtext)] space-y-2">
-            <li>Updated PEGA applications for ADA compliance by writing JavaScript functions and designing UI/UX mockups.</li>
-            <li>Conducted Boomi testing for EHRs in Salesforce, using SOQL queries to validate vaccination records.</li>
-            <li>Led the organization and facilitation of the Hour of Code volunteer event, engaging 300+ students across 5 schools (grades 2-8) in hands-on coding activities.</li>
+        <article class="interactive-card border border-[color:var(--color-luxe-border)] rounded-lg p-6 space-y-3">
+          <div>
+            <h3 class="text-lg font-semibold text-[color:var(--color-luxe-text)] m-0">
+              Technology Senior Analyst
+            </h3>
+            <p class="text-sm text-[color:var(--color-luxe-subtext)] m-0 mt-1">
+              Accenture · 2020 - 2022
+            </p>
+          </div>
+          <ul class="list-disc pl-5 space-y-2 text-[color:var(--color-luxe-subtext)]">
+            <li>Updated PEGA applications for accessibility with JavaScript and UI/UX mockups.</li>
+            <li>Supported EHR-related Salesforce testing with SOQL validation work.</li>
+            <li>Organized Hour of Code events engaging 300+ students across five schools.</li>
           </ul>
-        </div>
+        </article>
       </div>
-    </section>
+    </Reveal>
 
-    <!-- Education -->
-    <section>
-      <h2 class="text-3xl font-bold text-[color:var(--color-luxe-text)] mb-6">Education</h2>
-      <div class="bg-[color:var(--color-luxe-card)] p-6 rounded-lg shadow-md">
-        <h3 class="text-xl font-semibold text-[color:var(--color-luxe-text)]">Bachelor of Science in Computer Science</h3>
-        <p class="text-[color:var(--color-luxe-subtext)]">University Of Florida • 2016 - 2020</p>
-      </div>
-    </section>
+    <Reveal as="section" aria-labelledby="focus-heading" class="space-y-4">
+      <h2 id="focus-heading" class="text-2xl font-semibold text-[color:var(--color-luxe-text)]">
+        Technical focus
+      </h2>
+      <p class="text-[color:var(--color-luxe-subtext)]">
+        Day to day: React, TypeScript, shared components, Jest and React Testing Library, Python APIs, and AI features in real products.
+      </p>
+      <p class="text-[color:var(--color-luxe-subtext)]">
+        On the side: Astro, Next.js, React Native / Expo, Node.js, and Tailwind CSS. See{' '}
+        <a href="/work" class="text-[color:var(--color-luxe-accent)] hover:underline">selected work</a>.
+      </p>
+    </Reveal>
 
-    <!-- Interests -->
-    <section>
-      <h2 class="text-3xl font-bold text-[color:var(--color-luxe-text)] mb-6">Interests</h2>
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-        <div class="bg-[color:var(--color-luxe-card)] p-4 rounded-lg shadow-md flex items-center justify-center min-h-[80px] text-center">
-          <p class="text-[color:var(--color-luxe-subtext)]">Web/Mobile Development</p>
-        </div>
-        <div class="bg-[color:var(--color-luxe-card)] p-4 rounded-lg shadow-md flex items-center justify-center min-h-[80px] text-center">
-          <p class="text-[color:var(--color-luxe-subtext)]">AGI Exploration</p>
-        </div>
-        <div class="bg-[color:var(--color-luxe-card)] p-4 rounded-lg shadow-md flex items-center justify-center min-h-[80px] text-center">
-          <p class="text-[color:var(--color-luxe-subtext)]">Decentralized Systems</p>
-        </div>
-        <div class="bg-[color:var(--color-luxe-card)] p-4 rounded-lg shadow-md flex items-center justify-center min-h-[80px] text-center">
-          <p class="text-[color:var(--color-luxe-subtext)]">Open Source Contributions</p>
-        </div>
-        <div class="bg-[color:var(--color-luxe-card)] p-4 rounded-lg shadow-md flex items-center justify-center min-h-[80px] text-center">
-          <p class="text-[color:var(--color-luxe-subtext)]">UI/UX Design</p>
-        </div>
-        <div class="bg-[color:var(--color-luxe-card)] p-4 rounded-lg shadow-md flex items-center justify-center min-h-[80px] text-center">
-          <p class="text-[color:var(--color-luxe-subtext)]">AI & Machine Learning</p>
-        </div>
-      </div>
-    </section>
+    <Reveal as="section" aria-labelledby="education-heading" class="space-y-3">
+      <h2 id="education-heading" class="text-2xl font-semibold text-[color:var(--color-luxe-text)]">
+        Education
+      </h2>
+      <p class="text-[color:var(--color-luxe-subtext)]">
+        Bachelor of Science in Computer Science, University of Florida · 2016 - 2020
+      </p>
+    </Reveal>
 
-    <!-- Languages -->
-    <section>
-      <h2 class="text-3xl font-bold text-[color:var(--color-luxe-text)] mb-6">Languages</h2>
-      <div class="grid grid-cols-2 gap-4">
-        <div class="bg-[color:var(--color-luxe-card)] p-4 rounded-lg shadow-md text-center">
-          <p class="text-[color:var(--color-luxe-subtext)]">English</p>
-          <p class="text-sm text-[color:var(--color-luxe-subtext)] opacity-75">Native</p>
-        </div>
-        <div class="bg-[color:var(--color-luxe-card)] p-4 rounded-lg shadow-md text-center">
-          <p class="text-[color:var(--color-luxe-subtext)]">Spanish</p>
-          <p class="text-sm text-[color:var(--color-luxe-subtext)] opacity-75">Fluent</p>
-        </div>
-      </div>
-    </section>
-  </div>
-</Layout> 
+    <Reveal as="section" aria-labelledby="personal-heading" class="space-y-3">
+      <h2 id="personal-heading" class="text-2xl font-semibold text-[color:var(--color-luxe-text)]">
+        Outside of work
+      </h2>
+      <p class="text-[color:var(--color-luxe-subtext)]">
+        Big sports fan (Tampa Bay Rays, Florida Gators, Carolina Panthers). I also cook a lot, stay active, and watch too many movies. Reviews live on{' '}
+        <a
+          href={siteConfig.letterboxd}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-[color:var(--color-luxe-accent)] hover:underline"
+        >
+          Letterboxd
+        </a>
+        . I'm based in {siteConfig.location}.
+      </p>
+    </Reveal>
+
+    <Reveal class="flex flex-wrap gap-4">
+      <ButtonLink href="/contact" umamiEvent="about-contact">
+        Get in touch
+      </ButtonLink>
+      <ButtonLink
+        href={siteConfig.resumePath}
+        variant="secondary"
+        target="_blank"
+        rel="noopener noreferrer"
+        umamiEvent="about-resume"
+      >
+        Download resume
+      </ButtonLink>
+    </Reveal>
+  </Container>
+</Layout>
